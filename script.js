@@ -69,7 +69,8 @@ const API_URL = `https://v6.exchangerate-api.com/v6/${V6_API_KEY}/latest/MYR`;
 
 // Hardcoded fallback rates (MYR as base: 1 MYR = X Foreign Currency)
 const fallbackRates = {
-    "MYR": 1, "USD": 0.2120, "EUR": 0.1945, "GBP": 0.1650, "SGD": 0.2855,
+    "MYR": 1, 
+    "USD": 0.2120, "EUR": 0.1945, "GBP": 0.1650, "SGD": 0.2855,
     "JPY": 31.40,  "AUD": 0.3180, "CAD": 0.2890, "CNY": 1.50,
     "THB": 7.70,   "IDR": 3300.00, "HKD": 1.6500, "INR": 17.65,
     "PHP": 11.75,  "KRW": 275.00, "VND": 5000.00, "SAR": 0.7950, 
@@ -143,16 +144,14 @@ document.getElementById("convertBtn").onclick = () => {
   }
   
   if (!ratesData[from] || !ratesData[to]) {
-    // If ratesData is missing a currency, check if it's in the fallback list
     if (fallbackRates[from] && fallbackRates[to]) {
-      ratesData = fallbackRates; // Temporarily use fallback rates for calculation
+      ratesData = fallbackRates; 
     } else {
       resultElem.innerText = `Conversion rate for ${from} or ${to} not found in available rate data.`;
       return;
     }
   }
 
-  // Conversion formula using MYR as the implicit base
   const result = amount * (ratesData[to] / ratesData[from]); 
   
   resultElem.innerText = `${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}`;
@@ -221,7 +220,6 @@ function convertUnit() {
   
   try {
     if (category === 'length') {
-      // Base: meter (m)
       if (fromUnit === "cm") baseValue = val / 100;
       else if (fromUnit === "mm") baseValue = val / 1000;
       else if (fromUnit === "km") baseValue = val * 1000;
@@ -237,19 +235,17 @@ function convertUnit() {
       else result = baseValue; 
 
     } else if (category === 'weight') {
-      // Base: kilogram (kg)
       if (fromUnit === "g") baseValue = val / 1000;
       else if (fromUnit === "lb") baseValue = val * 0.453592;
       else if (fromUnit === "oz") baseValue = val * 0.0283495;
-      else baseValue = val; // kg
+      else baseValue = val; 
 
       if (toUnit === "g") result = baseValue * 1000;
       else if (toUnit === "lb") result = baseValue / 0.453592;
       else if (toUnit === "oz") result = baseValue / 0.0283495;
-      else result = baseValue; // kg
+      else result = baseValue; 
 
     } else if (category === 'temperature') {
-        // Base: Celsius (°C)
         if (fromUnit === '°C') baseValue = val;
         else if (fromUnit === '°F') baseValue = (val - 32) * (5/9);
         else if (fromUnit === 'K') baseValue = val - 273.15;
@@ -257,18 +253,17 @@ function convertUnit() {
         if (toUnit === '°C') result = baseValue;
         else if (toUnit === '°F') result = (baseValue * (9/5)) + 32;
         else if (toUnit === 'K') result = baseValue + 273.15;
-    
+        
     } else if (category === 'speed') {
-      // Base: meters per second (m/s)
       if (fromUnit === "km/h") baseValue = val / 3.6;
       else if (fromUnit === "mph") baseValue = val / 2.237;
       else if (fromUnit === "knot") baseValue = val * 0.514444;
-      else baseValue = val; // m/s
+      else baseValue = val; 
 
       if (toUnit === "km/h") result = baseValue * 3.6;
       else if (toUnit === "mph") result = baseValue * 2.237;
       else if (toUnit === "knot") result = baseValue / 0.514444;
-      else result = baseValue; // m/s
+      else result = baseValue; 
 
     } else {
       resultElem.innerText = `Conversion for ${category} is not yet supported.`;
