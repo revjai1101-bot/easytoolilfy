@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolify Hub – Smart Tools</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <h1>🌀 Toolify Hub</h1>
+    <p>Smart Tools for Everyone</p>
+  </div>
+</header>
+
+<main>
+  <input id="tool-search" class="search-input" placeholder="Search tools…">
+
+  <section class="tools">
+    <div class="tool-card" onclick="showTool('currency')">💱<p>Currency</p></div>
+    <div class="tool-card" onclick="showTool('unit')">📏<p>Unit</p></div>
+    <div class="tool-card" onclick="showTool('password')">🔐<p>Password</p></div>
+    <div class="tool-card" onclick="showTool('qr')">🔳<p>QR Code</p></div>
+    <div class="tool-card" onclick="showTool('age')">🎂<p>Age</p></div>
+    <div class="tool-card" onclick="showTool('image')">🖼<p>Image</p></div>
+  </section>
+
+  <section id="currency" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Currency Converter</h2>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+    <select id="fromCurrency"></select>
+    <select id="toCurrency"></select>
+    <button id="convertBtn">Convert</button>
+    <p id="currencyResult" class="result-text"></p>
+
+    <h3 class="rate-table-title">Money Changer Rates vs MYR 🇲🇾</h3>
+    <div class="rates-table-wrap">
+      <table id="ratesTable" class="rates-table">
+        <thead><tr><th>Currency</th><th>Rate (1 MYR = ?)</th></tr></thead>
+        <tbody id="ratesBody"><tr><td colspan="2">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="unit" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Unit Converter</h2>
+    <select id="unit-category">
+      <option value="length">Length</option>
+      <option value="weight">Weight</option>
+      <option value="temperature">Temperature</option>
+      <option value="speed">Speed</option>
+    </select>
+    <input id="unit-value" type="number" placeholder="Enter value">
+    <select id="unit-from"></select>
+    <select id="unit-to"></select> 
+    <button onclick="convertUnit()">Convert</button>
+    <p id="unit-result" class="result-text"></p>
+  </section>
+
+  <section id="qr" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>QR Code Generator</h2>
+    <input id="qr-input" placeholder="Enter text or URL">
+    <button onclick="generateQR()">Generate QR</button>
+    <div id="qr-result" style="text-align: center; margin-top: 20px;"></div>
+  </section>
+
+  <section id="password" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Password Generator</h2>
+    <input type="number" id="password-length" value="12" min="8" max="32" placeholder="Length (8-32)">
+    <button onclick="generatePassword()">Generate</button>
+    <p id="password-result" class="result-text"></p>
+  </section>
+
+  <section id="age" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Age Calculator</h2>
+    <input type="date" id="birthdate">
+    <button onclick="calculateAge()">Check</button>
+    <p id="age-result" class="result-text"></p>
+  </section>
+
+  <section id="image" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Image Resizer</h2>
+    <p>Upload an image and specify new dimensions below.</p>
+    
+    <input type="file" id="image-upload" accept="image/*" style="margin-bottom: 10px;">
+    
+    <label for="resize-width" style="display: block; margin-top: 10px;">New Width (px):</label>
+    <input type="number" id="resize-width" placeholder="e.g. 800" value="800">
+    
+    <label for="resize-height" style="display: block; margin-top: 10px;">New Height (px):</label>
+    <input type="number" id="resize-height" placeholder="e.g. 600" value="600">
+    
+    <button onclick="resizeAndDisplayImage()">Resize Image</button>
+    
+    <p id="image-result-text" class="result-text"></p>
+    <div id="image-result-display" style="text-align: center;"></div>
+  </section>
+
+</main>
+
+<script src="script.js"></script> </body>
+</html>
