@@ -28,12 +28,12 @@
     <div class="tool-card" onclick="showTool('image')">🖼<p>Image</p></div>
   </section>
 
-  <!-- Currency -->
+  <!-- Currency Converter -->
   <section id="currency" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Currency Converter</h2>
 
-    <input type="number" id="amount" placeholder="Amount">
+    <input type="number" id="amount" placeholder="Enter amount">
 
     <div class="currency-select-row">
       <select id="fromCurrency"></select>
@@ -49,7 +49,7 @@
     <p id="currencyResult" class="result-text"></p>
   </section>
 
-  <!-- Unit -->
+  <!-- Unit Converter -->
   <section id="unit" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Unit Converter</h2>
@@ -73,45 +73,54 @@
     <p id="unit-result" class="result-text"></p>
   </section>
 
-  <!-- Password -->
+  <!-- Password Generator -->
   <section id="password" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Password Generator</h2>
-    <input type="number" id="password-length" value="12">
-    <button onclick="generatePassword()">Generate</button>
+
+    <label for="password-length">Length:</label>
+    <input type="number" id="password-length" value="12" min="6" max="30">
+
+    <button onclick="generatePassword()">Generate Password</button>
     <p id="password-result" class="result-text"></p>
   </section>
 
-  <!-- QR -->
+  <!-- QR Code -->
   <section id="qr" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>QR Code Generator</h2>
+
     <input type="text" id="qr-input" placeholder="Enter text or URL">
-    <button onclick="generateQR()">Generate</button>
+    <button onclick="generateQR()">Generate QR Code</button>
+
     <div id="qr-result" class="qr-box"></div>
     <button id="qr-download" class="download-btn" style="display:none;">Download QR</button>
   </section>
 
-  <!-- Age -->
+  <!-- Age Calculator -->
   <section id="age" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Age Calculator</h2>
+
+    <label for="birthdate">Enter Birth Date:</label>
     <input type="date" id="birthdate">
+
     <button onclick="calculateAge()">Calculate Age</button>
     <p id="age-result" class="result-text"></p>
   </section>
 
-  <!-- Image -->
+  <!-- Image Resizer -->
   <section id="image" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Image Resizer</h2>
 
     <input type="file" id="image-upload" accept="image/*">
+    <label for="resize-width">Width (px):</label>
     <input type="number" id="resize-width" value="300">
+    <label for="resize-height">Height (px):</label>
     <input type="number" id="resize-height" value="200">
 
-    <button onclick="resizeAndDisplayImage()">Resize</button>
-
+    <button onclick="resizeAndDisplayImage()">Resize Image</button>
     <p id="image-result-text" class="result-text"></p>
     <div id="image-result-display"></div>
     <button id="img-download" class="download-btn" style="display:none;">Download Image</button>
@@ -119,7 +128,9 @@
 
 </main>
 
-<footer class="footer">© 2025 Toolify Hub</footer>
+<footer class="footer">
+  <p>© 2025 Toolify Hub — Smart Tools for Everyone</p>
+</footer>
 
 <script src="script.js"></script>
 </body>
