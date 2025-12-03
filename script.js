@@ -2,53 +2,29 @@
    GLOBAL PANEL & HISTORY HANDLING (Back Button Fix)
    ============================================================ */
 
-/**
- * Shows a specific tool panel and updates the browser history.
- * @param {string} id - The ID of the tool panel to show (e.g., 'currency').
- */
 function showTool(id) {
     document.querySelectorAll(".tool-panel").forEach(p => p.style.display = "none");
     document.getElementById(id).style.display = "block";
     window.scrollTo(0, 0);
 
-    // 1. Add a new entry to the browser's history
-    history.pushState({ tool: id }, "", `/${id}`); 
+    history.pushState({ tool: id }, "", `/${id}`);
 }
 
-/**
- * Navigates back in the browser's history.
- */
 function goBack() {
-    // Uses the browser's native back functionality
     history.back();
 }
 
-/**
- * Handles browser's back/forward navigation (popstate event).
- */
 window.addEventListener('popstate', function(event) {
-    // Hide all panels first
     document.querySelectorAll(".tool-panel").forEach(p => p.style.display = "none");
 
-    // Check the history state to see what needs to be displayed
     if (event.state && event.state.tool) {
-        // If the state includes a tool ID, show that panel
-        const toolId = event.state.tool;
-        const panel = document.getElementById(toolId);
-        if (panel) {
-            panel.style.display = "block";
-        }
-    } else {
-        // If back at the root '/', re-push a disposable state to prevent exiting the site
-        setTimeout(() => {
-            history.pushState({ tool: null }, "", "/");
-        }, 0); 
+        const panel = document.getElementById(event.state.tool);
+        if (panel) panel.style.display = "block";
     }
-    
+
     window.scrollTo(0, 0);
 });
 
-// IMPORTANT: Initialize the history state on page load.
 history.replaceState({ tool: null }, "", "/");
 
 
@@ -63,8 +39,9 @@ document.getElementById("tool-search").addEventListener("input", function () {
     });
 });
 
+
 /* ============================================================
-   CURRENCY CONVERTER + FAVORITES (API functionality removed)
+   CURRENCY CONVERTER + FAVORITES (API functionality disabled)
    ============================================================ */
 
 const topCurrencies = [
@@ -78,23 +55,15 @@ const fromCurrency = document.getElementById("fromCurrency");
 const toCurrency = document.getElementById("toCurrency");
 const currencyResult = document.getElementById("currencyResult");
 
-/* ===== FAVORITES ===== */
 let favFrom = JSON.parse(localStorage.getItem("fav_from")) || [];
 let favTo = JSON.parse(localStorage.getItem("fav_to")) || [];
 
-/* ===== BUILD DROPDOWNS ===== */
 function buildCurrencyDropdowns() {
     function buildOptions(favorites, target) {
         target.innerHTML = "";
-
-        favorites.forEach(f => {
-            target.innerHTML += `<option value="${f}">⭐ ${f}</option>`;
-        });
-
+        favorites.forEach(f => target.innerHTML += `<option value="${f}">⭐ ${f}</option>`);
         topCurrencies.forEach(cur => {
-            if (!favorites.includes(cur)) {
-                target.innerHTML += `<option value="${cur}">${cur}</option>`;
-            }
+            if (!favorites.includes(cur)) target.innerHTML += `<option value="${cur}">${cur}</option>`;
         });
     }
 
@@ -104,40 +73,47 @@ function buildCurrencyDropdowns() {
     if (!fromCurrency.value) fromCurrency.value = "MYR";
     if (!toCurrency.value) toCurrency.value = "USD";
 }
-
 buildCurrencyDropdowns();
 
-/* ===== FAVORITE BUTTONS ===== */
 document.getElementById("favFromBtn").addEventListener("click", () => {
     const cur = fromCurrency.value;
-
     if (!favFrom.includes(cur)) favFrom.push(cur);
     else favFrom = favFrom.filter(c => c !== cur);
-
     localStorage.setItem("fav_from", JSON.stringify(favFrom));
     buildCurrencyDropdowns();
 });
 
 document.getElementById("favToBtn").addEventListener("click", () => {
     const cur = toCurrency.value;
-
     if (!favTo.includes(cur)) favTo.push(cur);
     else favTo = favTo.filter(c => c !== cur);
-
     localStorage.setItem("fav_to", JSON.stringify(favTo));
     buildCurrencyDropdowns();
 });
 
-/* ===== CONVERT CURRENCY (Placeholder function) ===== */
+document.getElementById("convertBtn").addEventListener("click", () => {
+    currencyResult.innerText = "⚠️ Live exchange rates currently disabled.";
+});
 
-document.getElementById("convertBtn").addEventListener("click", convertCurrency);
 
-// This function now only displays a message instead of calling a broken API.
-function convertCurrency() {
-    currencyResult.innerText = "Error: Live rates are currently disabled.";
-}
+/* ============================================================
+   FIX: Prevent dropdown from opening upward 🚀
+   ============================================================ */
 
-// Removed loadMYRTable and its interval entirely.
+document.querySelectorAll("select").forEach(sel => {
+    sel.addEventListener("mousedown", () => {
+        document.body.style.overflow = "hidden"; // stop scroll jump
+    });
+
+    sel.addEventListener("blur", () => {
+        document.body.style.overflow = ""; // restore scroll
+    });
+
+    sel.addEventListener("change", () => {
+        document.body.style.overflow = ""; // restore scroll after selection
+    });
+});
+
 
 /* ============================================================
    UNIT CONVERTER
@@ -191,7 +167,6 @@ function convertUnit() {
 
     if (cat === "temperature") {
         let kelvin;
-
         if (from === "Celsius") kelvin = value + 273.15;
         else if (from === "Fahrenheit") kelvin = (value - 32) * 5/9 + 273.15;
         else kelvin = value;
@@ -207,9 +182,9 @@ function convertUnit() {
 
     const base = value / units[cat][from];
     const final = base * units[cat][to];
-
     unitResult.innerText = `${value} ${from} = ${final.toFixed(4)} ${to}`;
 }
+
 
 /* ============================================================
    PASSWORD GENERATOR
@@ -227,6 +202,7 @@ function generatePassword() {
     document.getElementById("password-result").innerText = pass;
 }
 
+
 /* ============================================================
    QR GENERATOR
    ============================================================ */
@@ -237,19 +213,18 @@ function generateQR() {
         `<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}" />`;
 }
 
+
 /* ============================================================
    AGE CALCULATOR
    ============================================================ */
 
 function calculateAge() {
     const birth = new Date(document.getElementById("birthdate").value);
-    if (!birth) return;
-
     const diff = Date.now() - birth.getTime();
     const age = new Date(diff).getUTCFullYear() - 1970;
-
     document.getElementById("age-result").innerText = `Age: ${age} years`;
 }
+
 
 /* ============================================================
    IMAGE RESIZER
@@ -264,7 +239,6 @@ function resizeAndDisplayImage() {
 
     const reader = new FileReader();
     reader.onload = function (e) {
-
         const img = new Image();
         img.onload = function () {
             const canvas = document.createElement("canvas");
