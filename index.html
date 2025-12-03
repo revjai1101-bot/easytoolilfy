@@ -64,8 +64,18 @@
     </div>
 
     <input type="number" id="amount" placeholder="Enter amount">
-    <select id="fromCurrency"></select>
-    <select id="toCurrency"></select>
+
+    <!-- FAVORITE BUTTONS ADDED -->
+    <div class="currency-select-row">
+      <select id="fromCurrency"></select>
+      <button id="favFromBtn" class="fav-btn">⭐</button>
+    </div>
+
+    <div class="currency-select-row">
+      <select id="toCurrency"></select>
+      <button id="favToBtn" class="fav-btn">⭐</button>
+    </div>
+
     <button id="convertBtn">Convert</button>
     <p id="currencyResult" class="result-text"></p>
 
@@ -85,7 +95,6 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Unit Converter</h2>
 
-    <!-- Unit Banner Ad -->
     <div style="margin:15px 0;">
       <ins class="adsbygoogle"
           style="display:block"
@@ -117,7 +126,6 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Password Generator</h2>
 
-    <!-- Password Banner Ad -->
     <div style="margin:15px 0;">
       <ins class="adsbygoogle"
           style="display:block"
@@ -140,11 +148,10 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>QR Code Generator</h2>
 
-    <!-- QR Banner Ad -->
     <div style="margin:15px 0;">
       <ins class="adsbygoogle"
           style="display:block"
-         data-ad-client="ca-pub-6408441237069178"
+          data-ad-client="ca-pub-6408441237069178"
           data-ad-slot="8995406772"
           data-ad-format="auto"
           data-full-width-responsive="true"></ins>
@@ -163,7 +170,6 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Age Calculator</h2>
 
-    <!-- Age Banner Ad -->
     <div style="margin:15px 0;">
       <ins class="adsbygoogle"
           style="display:block"
@@ -186,7 +192,6 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Image Resizer</h2>
 
-    <!-- Image Banner Ad -->
     <div style="margin:15px 0;">
       <ins class="adsbygoogle"
           style="display:block"
@@ -214,9 +219,7 @@
 
 </main>
 
-<!-- ========================================================= -->
-<!-- FOOTER (Required for AdSense) -->
-<!-- ========================================================= -->
+<!-- FOOTER -->
 <footer style="text-align:center; padding:20px; opacity:0.7; margin-top:40px;">
   <p>© 2025 easytoolilfy — Smart Tools for Everyone</p>
   <p>
