@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
 <header class="site-header">
   <div class="brand">
     <h1>🌀 Toolify Hub</h1>
@@ -31,6 +32,7 @@
   <section id="currency" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Currency Converter</h2>
+
     <input type="number" id="amount" placeholder="Amount">
 
     <div class="currency-select-row">
@@ -51,6 +53,7 @@
   <section id="unit" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Unit Converter</h2>
+
     <input type="number" id="unit-value" placeholder="Enter value">
 
     <select id="unit-category">
@@ -66,8 +69,17 @@
       <select id="unit-to"></select>
     </div>
 
-    <button onclick="convertUnit()">Convert</button>
+    <button id="unit-convert-btn">Convert</button>
     <p id="unit-result" class="result-text"></p>
+  </section>
+
+  <!-- Password -->
+  <section id="password" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Password Generator</h2>
+    <input type="number" id="password-length" value="12">
+    <button onclick="generatePassword()">Generate</button>
+    <p id="password-result" class="result-text"></p>
   </section>
 
   <!-- QR -->
@@ -75,8 +87,7 @@
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>QR Code Generator</h2>
     <input type="text" id="qr-input" placeholder="Enter text or URL">
-    <button onclick="generateQR()">Generate QR Code</button>
-
+    <button onclick="generateQR()">Generate</button>
     <div id="qr-result" class="qr-box"></div>
     <button id="qr-download" class="download-btn" style="display:none;">Download QR</button>
   </section>
@@ -90,13 +101,15 @@
     <p id="age-result" class="result-text"></p>
   </section>
 
-  <!-- Image Resizer -->
+  <!-- Image -->
   <section id="image" class="tool-panel">
     <button class="back-btn" onclick="goBack()">← Back</button>
     <h2>Image Resizer</h2>
+
     <input type="file" id="image-upload" accept="image/*">
     <input type="number" id="resize-width" value="300">
     <input type="number" id="resize-height" value="200">
+
     <button onclick="resizeAndDisplayImage()">Resize</button>
 
     <p id="image-result-text" class="result-text"></p>
@@ -106,9 +119,7 @@
 
 </main>
 
-<footer class="footer">
-  © 2025 Toolify Hub
-</footer>
+<footer class="footer">© 2025 Toolify Hub</footer>
 
 <script src="script.js"></script>
 </body>
