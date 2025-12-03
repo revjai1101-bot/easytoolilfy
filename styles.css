@@ -1,4 +1,9 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, sans-serif; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
 body {
   background: linear-gradient(160deg, #6a11cb, #2575fc);
@@ -6,13 +11,26 @@ body {
   min-height: 100vh;
 }
 
-main { padding: 12px; max-width: 600px; margin: 0 auto; }
+main {
+  padding: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .site-header {
   background: rgba(255,255,255,0.12);
   padding: 18px;
   text-align: center;
   border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+.brand h1 {
+  font-size: 28px;
+}
+
+.brand p {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 .search-input {
@@ -24,8 +42,14 @@ main { padding: 12px; max-width: 600px; margin: 0 auto; }
   border: none;
   color: #fff;
   font-size: 16px;
+  outline: none;
 }
 
+.search-input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* Tool cards */
 .tools {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -39,8 +63,21 @@ main { padding: 12px; max-width: 600px; margin: 0 auto; }
   text-align: center;
   font-size: 30px;
   cursor: pointer;
+  transition: 0.25s ease;
 }
 
+.tool-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.32);
+}
+
+.tool-card p {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Panels */
 .tool-panel {
   position: fixed;
   inset: 0;
@@ -52,48 +89,82 @@ main { padding: 12px; max-width: 600px; margin: 0 auto; }
   display: none;
 }
 
-input, select {
+.back-btn {
+  background: transparent;
+  color: #6a11cb;
+  font-size: 18px;
+  border: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Inputs / buttons */
+input,
+select {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
   border-radius: 8px;
   border: 1px solid #ddd;
+  font-size: 16px;
 }
 
 button {
   width: 100%;
   padding: 14px;
-  margin-top: 10px;
+  margin-top: 12px;
   border: none;
   color: #fff;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
   border-radius: 10px;
-  background: linear-gradient(120deg,#6a11cb,#2575fc);
+  background: linear-gradient(120deg, #6a11cb, #2575fc);
   cursor: pointer;
 }
 
-.download-btn {
-  background: #000 !important;
-  margin-top: 8px;
+.currency-select-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
+.fav-btn {
+  background: gold;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Result boxes */
 .result-text {
   margin-top: 15px;
   padding: 10px;
-  background: #eef4ff;
+  font-size: 15px;
+  color: #111;
   border-left: 5px solid #6a11cb;
-  border-radius: 6px;
+  background: #f0f8ff;
+  border-radius: 4px;
 }
 
-.footer {
-  text-align:center;
-  padding:20px;
-  opacity:0.7;
-  margin-top:40px;
+/* Download buttons */
+.download-btn {
+  background: #000;
+  color: #fff;
 }
 
+/* QR */
 .qr-box img {
   width: 250px;
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
+  margin-top: 40px;
 }
