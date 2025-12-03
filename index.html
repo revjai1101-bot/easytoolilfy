@@ -1,107 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Toolify Hub – Smart Tools for Everyone</title>
+  <title>Toolify Hub – Smart Tools for Everyone</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Toolify Hub provides free smart tools including currency converter, unit converter, age calculator, password generator, QR code generator, and image resizer. Fast, simple, accurate, and free.">
+    <meta name="description" content="Toolify Hub provides free smart tools including currency converter, unit converter, age calculator, password generator, QR code generator, and image resizer. Fast, simple, accurate, and free.">
 
-  <link rel="canonical" href="https://www.easytoolilfy.com/">
+  <link rel="canonical" href="https://www.easytoolilfy.com/">
 
-  <!-- AdSense (only once in header) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6408441237069178"
-    crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6408441237069178"
+    crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <header class="site-header">
-  <div class="brand">
-    <h1>🌀 Toolify Hub</h1>
-    <p>Smart Tools for Everyone</p>
-  </div>
+  <div class="brand">
+    <h1>🌀 Toolify Hub</h1>
+    <p>Smart Tools for Everyone</p>
+  </div>
 </header>
 
 <main>
 
-  <!-- HOME PAGE BANNER AD -->
-  <div class="ad-block">
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-6408441237069178"
-        data-ad-slot="5142973431"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+    <div class="ad-block">
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-6408441237069178"
+        data-ad-slot="5142973431"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
-  <input id="tool-search" class="search-input" placeholder="Search tools…">
+  <input id="tool-search" class="search-input" placeholder="Search tools…">
 
-  <section class="tools">
-    <div class="tool-card" onclick="showTool('currency')">💱<p>Currency</p></div>
-    <div class="tool-card" onclick="showTool('unit')">📏<p>Unit</p></div>
-    <div class="tool-card" onclick="showTool('password')">🔐<p>Password</p></div>
-    <div class="tool-card" onclick="showTool('qr')">🔳<p>QR Code</p></div>
-    <div class="tool-card" onclick="showTool('age')">🎂<p>Age</p></div>
-    <div class="tool-card" onclick="showTool('image')">🖼<p>Image</p></div>
+  <section class="tools">
+    <div class="tool-card" onclick="showTool('currency')">💱<p>Currency</p></div>
+    <div class="tool-card" onclick="showTool('unit')">📏<p>Unit</p></div>
+    <div class="tool-card" onclick="showTool('password')">🔐<p>Password</p></div>
+    <div class="tool-card" onclick="showTool('qr')">🔳<p>QR Code</p></div>
+    <div class="tool-card" onclick="showTool('age')">🎂<p>Age</p></div>
+    <div class="tool-card" onclick="showTool('image')">🖼<p>Image</p></div>
+  </section>
+
+    
+    <section id="currency" class="tool-panel">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <h2>Currency Converter</h2>
+
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-6408441237069178"
+          data-ad-slot="8828612160"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <div class="currency-select-row">
+      <select id="fromCurrency"></select>
+      <button id="favFromBtn" class="fav-btn">⭐</button>
+    </div>
+
+    <div class="currency-select-row">
+      <select id="toCurrency"></select>
+      <button id="favToBtn" class="fav-btn">⭐</button>
+    </div>
+
+    <button id="convertBtn">Convert</button>
+    <p id="currencyResult" class="result-text"></p>
+
+    <h3 class="rate-table-title">Money Changer Rates vs MYR 🇲🇾</h3>
+    <div class="rates-table-wrap">
+      <table class="rates-table">
+        <thead><tr><th>Currency</th><th>Rate (1 MYR = ?)</th></tr></thead>
+        <tbody id="ratesBody"><tr><td colspan="2">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="unit" class="tool-panel">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <h2>Unit Converter</h2>
+
+      <input type="number" id="unit-value" placeholder="Enter value">
+      
+      <select id="unit-category" onchange="loadUnits()">
+          <option value="length">Length</option>
+          <option value="weight">Weight</option>
+          <option value="temperature">Temperature</option>
+          <option value="speed">Speed</option>
+      </select>
+
+      <div class="currency-select-row">
+          <select id="unit-from"></select>
+          <p>to</p>
+          <select id="unit-to"></select>
+      </div>
+
+      <button onclick="convertUnit()">Convert Unit</button>
+      <p id="unit-result" class="result-text"></p>
   </section>
 
-  <!-- PANELS START -->
-  <!-- CURRENCY TOOL -->
-  <section id="currency" class="tool-panel">
-    <button class="back-btn" onclick="goBack()">← Back</button>
-    <h2>Currency Converter</h2>
+  <section id="password" class="tool-panel">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <h2>Password Generator</h2>
 
-    <div class="ad-block">
-      <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-6408441237069178"
-          data-ad-slot="8828612160"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+      <label for="password-length">Length:</label>
+      <input type="number" id="password-length" value="12" min="6" max="30">
 
-    <input type="number" id="amount" placeholder="Enter amount">
-
-    <div class="currency-select-row">
-      <select id="fromCurrency"></select>
-      <button id="favFromBtn" class="fav-btn">⭐</button>
-    </div>
-
-    <div class="currency-select-row">
-      <select id="toCurrency"></select>
-      <button id="favToBtn" class="fav-btn">⭐</button>
-    </div>
-
-    <button id="convertBtn">Convert</button>
-    <p id="currencyResult" class="result-text"></p>
-
-    <h3 class="rate-table-title">Money Changer Rates vs MYR 🇲🇾</h3>
-    <div class="rates-table-wrap">
-      <table class="rates-table">
-        <thead><tr><th>Currency</th><th>Rate (1 MYR = ?)</th></tr></thead>
-        <tbody id="ratesBody"><tr><td colspan="2">Loading…</td></tr></tbody>
-      </table>
-    </div>
+      <button onclick="generatePassword()">Generate Password</button>
+      <p id="password-result" class="result-text">Click 'Generate'</p>
   </section>
 
-  <!-- OTHER TOOLS (unit, password, qr, age, image) — unchanged -->
-  <!-- Your full content kept same as above -->
+  <section id="qr" class="tool-panel">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <h2>QR Code Generator</h2>
 
-</main>
+      <input type="text" id="qr-input" placeholder="Enter text or URL">
+
+      <button onclick="generateQR()">Generate QR Code</button>
+      <div id="qr-result" style="text-align: center; margin-top: 20px;"></div>
+  </section>
+
+  <section id="age" class="tool-panel">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <h2>Age Calculator</h2>
+
+      <label for="birthdate">Enter Birth Date:</label>
+      <input type="date" id="birthdate">
+
+      <button onclick="calculateAge()">Calculate Age</button>
+      <p id="age-result" class="result-text"></p>
+  </section>
+
+  <section id="image" class="tool-panel">
+      <button class="back-btn" onclick="goBack()">← Back</button>
+      <h2>Image Resizer</h2>
+
+      <input type="file" id="image-upload" accept="image/*">
+      <label for="resize-width">Width (px):</label>
+      <input type="number" id="resize-width" value="300">
+      <label for="resize-height">Height (px):</label>
+      <input type="number" id="resize-height" value="200">
+
+      <button onclick="resizeAndDisplayImage()">Resize Image</button>
+      <p id="image-result-text" class="result-text"></p>
+      <div id="image-result-display"></div>
+  </section>
+  
+  </main>
 
 <footer class="footer">
-  <p>© 2025 easytoolilfy — Smart Tools for Everyone</p>
-  <p>
-    <a href="privacy.html">Privacy Policy</a> •
-    <a href="terms.html">Terms & Conditions</a>
-  </p>
+  <p>© 2025 easytoolilfy — Smart Tools for Everyone</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> •
+    <a href="terms.html">Terms & Conditions</a>
+  </p>
 </footer>
 
 <script src="script.js"></script>
