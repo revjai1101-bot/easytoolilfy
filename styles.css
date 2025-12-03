@@ -1,7 +1,13 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, sans-serif; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: Inter, sans-serif; 
+}
 
+/* Gradient background */
 body {
-  background: linear-gradient(160deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #4b1fcf, #1c6de8);
   color: #fff;
   min-height: 100vh;
 }
@@ -12,6 +18,7 @@ main {
   margin: 0 auto;
 }
 
+/******** HEADER ********/
 .site-header {
   background: rgba(255,255,255,0.12);
   padding: 18px;
@@ -22,12 +29,15 @@ main {
 .brand h1 { font-size: 28px; }
 .brand p { font-size: 14px; opacity: 0.8; }
 
+/******** SEARCH ********/
 .search-input {
-  width: 100%; padding: 14px;
+  width: 100%; 
+  padding: 14px;
   margin: 14px 0;
   border-radius: 12px;
   background: rgba(255,255,255,0.18);
-  border: none; color: #fff;
+  border: none; 
+  color: #fff;
   font-size: 16px;
   outline: none;
 }
@@ -66,11 +76,11 @@ main {
   font-weight: 500;
 }
 
-/******** PANELS ********/
+/******** TOOL PANEL ********/
 .tool-panel {
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: #fafafa;
   color: #222;
   padding: 20px;
   overflow-y: auto;
@@ -85,27 +95,31 @@ main {
   border: none;
   margin-bottom: 10px;
   cursor: pointer;
-  padding: 0;
 }
 
+/******** INPUTS ********/
 input, select {
-  width: 100%; padding: 12px;
+  width: 100%; 
+  padding: 12px;
   margin: 8px 0;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   font-size: 16px;
 }
 
 .tool-panel label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #444;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
 }
 
+/******** BUTTONS ********/
 button {
-  width: 100%; padding: 14px;
+  width: 100%; 
+  padding: 14px;
   margin-top: 15px;
-  border: none; color: #fff;
+  border: none; 
+  color: #fff;
   font-weight: 700;
   font-size: 17px;
   border-radius: 12px;
@@ -119,16 +133,16 @@ button:hover {
 }
 
 .download-link-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background: #28a745;
-    color: white !important;
-    text-decoration: none !important;
-    border-radius: 8px;
-    font-weight: 600;
-    text-align: center;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background: #28a745;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
 }
 
 /******** TABLE ********/
@@ -176,6 +190,7 @@ button:hover {
   background: #f8f3ff;
 }
 
+/******** RESULT TEXT ********/
 .result-text {
   margin-top: 15px;
   padding: 10px;
