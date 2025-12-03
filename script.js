@@ -24,10 +24,9 @@ document.getElementById("tool-search").addEventListener("input", function () {
 });
 
 /* ============================================================
-   CURRENCY CONVERTER
+   CURRENCY CONVERTER + FAVORITES
    ============================================================ */
 
-// Top 50 currencies list
 const topCurrencies = [
     "USD","EUR","GBP","JPY","AUD","CAD","SGD","CHF","THB","IDR","CNY","HKD","NZD","SAR",
     "AED","INR","KRW","PHP","VND","BDT","PKR","MMK","BRL","ZAR","SEK","NOK","DKK","PLN",
@@ -39,20 +38,63 @@ const fromCurrency = document.getElementById("fromCurrency");
 const toCurrency = document.getElementById("toCurrency");
 const currencyResult = document.getElementById("currencyResult");
 
-// Fill dropdowns
-topCurrencies.forEach(cur => {
-    fromCurrency.innerHTML += `<option value="${cur}">${cur}</option>`;
-    toCurrency.innerHTML += `<option value="${cur}">${cur}</option>`;
+/* ===== FAVORITES STORED IN LOCALSTORAGE ===== */
+let favFrom = JSON.parse(localStorage.getItem("fav_from")) || [];
+let favTo = JSON.parse(localStorage.getItem("fav_to")) || [];
+
+/* ===== BUILD DROPDOWNS WITH FAVORITES ON TOP ===== */
+function buildCurrencyDropdowns() {
+    function buildOptions(favorites, target) {
+        target.innerHTML = "";
+
+        // FAV FIRST
+        favorites.forEach(f => {
+            target.innerHTML += `<option value="${f}">⭐ ${f}</option>`;
+        });
+
+        // NORMAL AFTER
+        topCurrencies.forEach(cur => {
+            if (!favorites.includes(cur)) {
+                target.innerHTML += `<option value="${cur}">${cur}</option>`;
+            }
+        });
+    }
+
+    buildOptions(favFrom, fromCurrency);
+    buildOptions(favTo, toCurrency);
+
+    if (!fromCurrency.value) fromCurrency.value = "MYR";
+    if (!toCurrency.value) toCurrency.value = "USD";
+}
+
+buildCurrencyDropdowns();
+
+/* ====== SAVE FAVORITE BUTTONS ====== */
+document.getElementById("favFromBtn").addEventListener("click", () => {
+    const cur = fromCurrency.value;
+    if (!favFrom.includes(cur)) favFrom.push(cur);
+    else favFrom = favFrom.filter(c => c !== cur);
+
+    localStorage.setItem("fav_from", JSON.stringify(favFrom));
+    buildCurrencyDropdowns();
 });
-fromCurrency.value = "MYR";
-toCurrency.value = "USD";
+
+document.getElementById("favToBtn").addEventListener("click", () => {
+    const cur = toCurrency.value;
+    if (!favTo.includes(cur)) favTo.push(cur);
+    else favTo = favTo.filter(c => c !== cur);
+
+    localStorage.setItem("fav_to", JSON.stringify(favTo));
+    buildCurrencyDropdowns();
+});
+
+/* ====== CONVERT CURRENCY ====== */
 
 document.getElementById("convertBtn").addEventListener("click", convertCurrency);
 
-// Exchange API (Vercel endpoint)
 async function convertCurrency() {
     let amount = document.getElementById("amount").value;
-    if (!amount) return currencyResult.innerText = "Enter amount first.";
+    if (!amount) return (currencyResult.innerText = "Enter amount first.");
 
     try {
         const res = await fetch(`/api/exchange?base=${fromCurrency.value}`);
@@ -75,35 +117,39 @@ async function convertCurrency() {
 }
 
 /* ============================================================
-   MONEY CHANGER RATE TABLE (MYR BASE)
+   LIVE MONEY CHANGER TABLE (AUTO UPDATE)
    ============================================================ */
 
 async function loadMYRTable() {
     const ratesBody = document.getElementById("ratesBody");
+
     try {
         const res = await fetch(`/api/exchange?base=MYR`);
         const data = await res.json();
 
         ratesBody.innerHTML = "";
+
         topCurrencies.forEach(cur => {
             if (!data.conversion_rates[cur]) return;
 
             const rate = data.conversion_rates[cur];
             ratesBody.innerHTML += `
-                <tr>
-                    <td>${cur}</td>
-                    <td style="text-align:right">${rate.toFixed(4)}</td>
-                </tr>`;
+            <tr>
+                <td>${cur}</td>
+                <td style="text-align:right">${rate.toFixed(4)}</td>
+            </tr>`;
         });
     } catch (e) {
         ratesBody.innerHTML = `<tr><td colspan="2">Failed to load…</td></tr>`;
     }
 }
 
+/* AUTO UPDATE EVERY 5 MINUTES */
 loadMYRTable();
+setInterval(loadMYRTable, 5 * 60 * 1000);
 
 /* ============================================================
-   UNIT CONVERTER (FULL WORKING)
+   UNIT CONVERTER
    ============================================================ */
 
 const unitCategory = document.getElementById("unit-category");
@@ -112,22 +158,13 @@ const unitTo = document.getElementById("unit-to");
 const unitValue = document.getElementById("unit-value");
 const unitResult = document.getElementById("unit-result");
 
-// All units
 const units = {
-    length: {
-        m: 1, cm: 100, mm: 1000, km: 0.001,
-        inch: 39.3701, ft: 3.28084, yard: 1.09361
-    },
-    weight: {
-        kg: 1, g: 1000, mg: 1000000, lb: 2.20462, oz: 35.274
-    },
+    length: { m: 1, cm: 100, mm: 1000, km: 0.001, inch: 39.3701, ft: 3.28084, yard: 1.09361 },
+    weight: { kg: 1, g: 1000, mg: 1000000, lb: 2.20462, oz: 35.274 },
     temperature: "special",
-    speed: {
-        "m/s": 1, "km/h": 3.6, "mph": 2.23694, "km/s": 0.001
-    }
+    speed: { "m/s": 1, "km/h": 3.6, mph: 2.23694, "km/s": 0.001 }
 };
 
-// Populate dropdowns
 function loadUnits() {
     const cat = unitCategory.value;
     unitFrom.innerHTML = "";
@@ -148,9 +185,8 @@ function loadUnits() {
 }
 
 unitCategory.addEventListener("change", loadUnits);
-loadUnits(); // initial load
+loadUnits();
 
-// Convert
 function convertUnit() {
     const cat = unitCategory.value;
     const from = unitFrom.value;
@@ -165,7 +201,6 @@ function convertUnit() {
     if (cat === "temperature") {
         let kelvin;
 
-        // Convert to Kelvin
         if (from === "Celsius") kelvin = value + 273.15;
         else if (from === "Fahrenheit") kelvin = (value - 32) * 5/9 + 273.15;
         else kelvin = value;
@@ -179,7 +214,6 @@ function convertUnit() {
         return;
     }
 
-    // Normal conversion
     const base = value / units[cat][from];
     const final = base * units[cat][to];
 
