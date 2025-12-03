@@ -64,11 +64,8 @@ document.getElementById("tool-search").addEventListener("input", function () {
 });
 
 /* ============================================================
-   CURRENCY CONVERTER + FAVORITES
+   CURRENCY CONVERTER + FAVORITES (API functionality removed)
    ============================================================ */
-
-// WARNING: This API base URL will likely fail since the Vercel API function was removed.
-const API_BASE = "https://www.easytoolilfy.com/api/exchange?base="; 
 
 const topCurrencies = [
     "USD","EUR","GBP","JPY","AUD","CAD","SGD","CHF","THB","IDR","CNY","HKD","NZD","SAR",
@@ -131,65 +128,16 @@ document.getElementById("favToBtn").addEventListener("click", () => {
     buildCurrencyDropdowns();
 });
 
-/* ===== CONVERT CURRENCY ===== */
+/* ===== CONVERT CURRENCY (Placeholder function) ===== */
 
 document.getElementById("convertBtn").addEventListener("click", convertCurrency);
 
-async function convertCurrency() {
-    let amount = document.getElementById("amount").value;
-    if (!amount) return currencyResult.innerText = "Enter amount first.";
-
-    try {
-        const res = await fetch(API_BASE + fromCurrency.value);
-        const data = await res.json();
-
-        if (!data.conversion_rates) {
-            currencyResult.innerText = "Error loading currency rates.";
-            return;
-        }
-
-        const rate = data.conversion_rates[toCurrency.value];
-        const converted = amount * rate;
-
-        currencyResult.innerText =
-            `${amount} ${fromCurrency.value} = ${converted.toFixed(2)} ${toCurrency.value}`;
-
-    } catch (e) {
-        currencyResult.innerText = "Failed — check internet or API.";
-    }
+// This function now only displays a message instead of calling a broken API.
+function convertCurrency() {
+    currencyResult.innerText = "Error: Live rates are currently disabled.";
 }
 
-/* ============================================================
-   LIVE MONEY CHANGER TABLE
-   ============================================================ */
-
-async function loadMYRTable() {
-    const ratesBody = document.getElementById("ratesBody");
-
-    try {
-        const res = await fetch(API_BASE + "MYR");
-        const data = await res.json();
-
-        ratesBody.innerHTML = "";
-
-        topCurrencies.forEach(cur => {
-            if (!data.conversion_rates[cur]) return;
-
-            const rate = data.conversion_rates[cur];
-            ratesBody.innerHTML += `
-            <tr>
-                <td>${cur}</td>
-                <td style="text-align:right">${rate.toFixed(4)}</td>
-            </tr>`;
-        });
-    } catch (e) {
-        ratesBody.innerHTML = `<tr><td colspan="2">Failed to load…</td></tr>`;
-    }
-}
-
-/* AUTO REFRESH EVERY 5 MINUTES */
-loadMYRTable();
-setInterval(loadMYRTable, 5 * 60 * 1000);
+// Removed loadMYRTable and its interval entirely.
 
 /* ============================================================
    UNIT CONVERTER
@@ -285,7 +233,6 @@ function generatePassword() {
 
 function generateQR() {
     const text = document.getElementById("qr-input").value;
-    // Note: This relies on an external, free API (qrserver.com)
     document.getElementById("qr-result").innerHTML =
         `<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}" />`;
 }
