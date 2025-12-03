@@ -1,13 +1,7 @@
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
-  font-family: Inter, sans-serif; 
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, sans-serif; }
 
-/* Gradient background */
 body {
-  background: linear-gradient(135deg, #4b1fcf, #1c6de8);
+  background: linear-gradient(160deg, #6a11cb, #2575fc);
   color: #fff;
   min-height: 100vh;
 }
@@ -18,7 +12,6 @@ main {
   margin: 0 auto;
 }
 
-/******** HEADER ********/
 .site-header {
   background: rgba(255,255,255,0.12);
   padding: 18px;
@@ -29,15 +22,12 @@ main {
 .brand h1 { font-size: 28px; }
 .brand p { font-size: 14px; opacity: 0.8; }
 
-/******** SEARCH ********/
 .search-input {
-  width: 100%; 
-  padding: 14px;
+  width: 100%; padding: 14px;
   margin: 14px 0;
   border-radius: 12px;
   background: rgba(255,255,255,0.18);
-  border: none; 
-  color: #fff;
+  border: none; color: #fff;
   font-size: 16px;
   outline: none;
 }
@@ -76,11 +66,11 @@ main {
   font-weight: 500;
 }
 
-/******** TOOL PANEL ********/
+/******** PANELS ********/
 .tool-panel {
   position: fixed;
   inset: 0;
-  background: #fafafa;
+  background: #ffffff;
   color: #222;
   padding: 20px;
   overflow-y: auto;
@@ -97,52 +87,58 @@ main {
   cursor: pointer;
 }
 
-/******** INPUTS ********/
+/******** FAVORITES ROW ********/
+.currency-select-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.fav-btn {
+  background: gold;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.fav-btn.active {
+  background: orange;
+  transform: scale(1.1);
+}
+
 input, select {
-  width: 100%; 
-  padding: 12px;
+  width: 100%; padding: 12px;
   margin: 8px 0;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   font-size: 16px;
 }
 
-.tool-panel label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #444;
-}
-
-/******** BUTTONS ********/
 button {
-  width: 100%; 
-  padding: 14px;
+  width: 100%; padding: 14px;
   margin-top: 15px;
-  border: none; 
-  color: #fff;
+  border: none; color: #fff;
   font-weight: 700;
   font-size: 17px;
   border-radius: 12px;
   background: linear-gradient(120deg,#6a11cb,#2575fc);
   cursor: pointer;
-  transition: opacity .2s;
 }
 
-button:hover {
-  opacity: 0.9;
-}
+button:hover { opacity: 0.9; }
 
-.download-link-btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
+.result-text {
   margin-top: 15px;
-  background: #28a745;
-  color: white !important;
-  text-decoration: none !important;
-  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
   font-weight: 600;
-  text-align: center;
+  color: #111;
+  border-left: 5px solid #6a11cb;
+  background: #f0f8ff;
+  border-radius: 4px;
 }
 
 /******** TABLE ********/
@@ -151,8 +147,6 @@ button:hover {
   color: #6a11cb;
   font-weight: 700;
   font-size: 18px;
-  border-bottom: 2px solid #f0f0f0;
-  padding-bottom: 5px;
 }
 
 .rates-table-wrap {
@@ -172,32 +166,19 @@ button:hover {
   background: #6a11cb;
   color: #fff;
   padding: 12px;
-  font-size: 14px;
   text-align: left;
 }
 
-.rates-table th:last-child, .rates-table td:last-child {
+.rates-table th:last-child,
+.rates-table td:last-child {
   text-align: right;
 }
 
 .rates-table td {
   padding: 12px;
   border-bottom: 1px solid #eee;
-  font-size: 14px;
 }
 
 .rates-table tr:nth-child(even) {
   background: #f8f3ff;
-}
-
-/******** RESULT TEXT ********/
-.result-text {
-  margin-top: 15px;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #111;
-  border-left: 5px solid #6a11cb;
-  background: #f0f8ff;
-  border-radius: 4px;
 }
