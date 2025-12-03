@@ -1,67 +1,60 @@
-/* SPA HASH ROUTING */
+/* ===== SPA HASH ROUTING ===== */
 function showTool(id){
   document.querySelectorAll(".tool-panel").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="block";
-  window.location.hash = id;
+  window.location.hash=id;
 }
 function goBack(){ history.back(); }
 window.addEventListener("hashchange",()=>{
-  const id = window.location.hash.replace("#","");
+  const id=location.hash.replace("#","");
   document.querySelectorAll(".tool-panel").forEach(p=>p.style.display="none");
   if(id) document.getElementById(id).style.display="block";
 });
 
-/*** SEARCH FILTER ***/
-document.getElementById("tool-search").addEventListener("input",()=>{
+/* SEARCH */
+document.getElementById("tool-search").addEventListener("input",function(){
   const q=this.value.toLowerCase();
-  document.querySelectorAll(".tool-card").forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none");
+  document.querySelectorAll(".tool-card").forEach(c=>
+    c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none"
+  );
 });
 
-/******************************************************
- CURRENCY CONVERTER - OFFLINE STATIC RATE MULTIPLIER
-******************************************************/
+/************ CURRENCY ************/
 const topCurrencies=["USD","EUR","GBP","JPY","AUD","CAD","SGD","CHF","THB","IDR","CNY","HKD","NZD","SAR","AED","INR","KRW","PHP","VND","BDT","PKR","MMK","BRL","ZAR","SEK","NOK","DKK","PLN","TRY","HUF","EGP","QAR","KWD","BHD","OMR","LKR","NPR","KES","RUB","MXN","ARS","NGN","COP","CLP","CZK","RON","ILS","MAD","MYR"];
 const fromCurrency=document.getElementById("fromCurrency");
 const toCurrency=document.getElementById("toCurrency");
 let favFrom=JSON.parse(localStorage.getItem("fav_from"))||[];
 let favTo=JSON.parse(localStorage.getItem("fav_to"))||[];
 
-function buildOptions(){
-  function doFav(f,target){
-    target.innerHTML="";
-    f.forEach(x=>target.innerHTML+=`<option value="${x}">⭐ ${x}</option>`);
-    topCurrencies.forEach(x=>{if(!f.includes(x)) target.innerHTML+=`<option value="${x}">${x}</option>`;});
-  }
-  doFav(favFrom,fromCurrency);
-  doFav(favTo,toCurrency);
+function buildDropdown(target, favs){
+  target.innerHTML="";
+  favs.forEach(f=>target.innerHTML+=`<option value="${f}">⭐ ${f}</option>`);
+  topCurrencies.forEach(c=>{ if(!favs.includes(c)) target.innerHTML+=`<option value="${c}">${c}</option>`; });
 }
-buildOptions();
+function refreshCurrencyUI(){ buildDropdown(fromCurrency,favFrom); buildDropdown(toCurrency,favTo);}
+refreshCurrencyUI();
 
 document.getElementById("favFromBtn").onclick=()=>{
   const c=fromCurrency.value;
-  favFrom = favFrom.includes(c)?favFrom.filter(x=>x!==c):[...favFrom,c];
+  favFrom=favFrom.includes(c)?favFrom.filter(x=>x!==c):[...favFrom,c];
   localStorage.setItem("fav_from",JSON.stringify(favFrom));
-  buildOptions();
+  refreshCurrencyUI();
 };
 document.getElementById("favToBtn").onclick=()=>{
   const c=toCurrency.value;
-  favTo = favTo.includes(c)?favTo.filter(x=>x!==c):[...favTo,c];
+  favTo=favTo.includes(c)?favTo.filter(x=>x!==c):[...favTo,c];
   localStorage.setItem("fav_to",JSON.stringify(favTo));
-  buildOptions();
+  refreshCurrencyUI();
 };
 
 document.getElementById("convertBtn").onclick=()=>{
   const amt=parseFloat(document.getElementById("amount").value);
-  if(isNaN(amt))return currencyResult.innerText="Enter number";
-  const iA=topCurrencies.indexOf(fromCurrency.value)+1;
-  const iB=topCurrencies.indexOf(toCurrency.value)+1;
-  const rate=iB/iA;
-  currencyResult.innerText=`${amt} ${fromCurrency.value} ≈ ${(amt*rate).toFixed(2)} ${toCurrency.value}`;
+  if(isNaN(amt)) return currencyResult.innerText="Enter amount";
+  const r=(topCurrencies.indexOf(toCurrency.value)+1)/(topCurrencies.indexOf(fromCurrency.value)+1);
+  currencyResult.innerText=`${amt} ${fromCurrency.value} ≈ ${(amt*r).toFixed(2)} ${toCurrency.value}`;
 };
 
-/******************************************************
- UNIT CONVERTER — FULL WORKING
-******************************************************/
+/************ UNIT ************/
 const unitCategory=document.getElementById("unit-category");
 const unitFrom=document.getElementById("unit-from");
 const unitTo=document.getElementById("unit-to");
@@ -71,6 +64,7 @@ const units={
   temperature:"special",
   speed:{"m/s":1,"km/h":3.6,mph:2.23}
 };
+
 function loadUnits(){
   const cat=unitCategory.value;
   unitFrom.innerHTML=unitTo.innerHTML="";
@@ -90,61 +84,54 @@ unitCategory.onchange=loadUnits;
 loadUnits();
 
 function convertUnit(){
-  const val=parseFloat(document.getElementById("unit-value").value);
-  if(isNaN(val)) return unitResult.innerText="Enter number";
+  const val=parseFloat(unitValue.value);
+  if(isNaN(val)) return unitResult.innerText="Enter value";
   const from=unitFrom.value,to=unitTo.value,cat=unitCategory.value;
   if(cat==="temperature"){
     let k=(from==="Celsius")?val+273.15:(from==="Fahrenheit")?((val-32)*5/9+273.15):val;
-    let fin=(to==="Celsius")?k-273.15:(to==="Fahrenheit")?((k-273.15)*9/5+32):k;
-    return unitResult.innerText=`${val} ${from} = ${fin.toFixed(2)} ${to}`;
+    let result=(to==="Celsius")?k-273.15:(to==="Fahrenheit")?((k-273.15)*9/5+32):k;
+    unitResult.innerText=`${val} ${from} = ${result.toFixed(2)} ${to}`;
+  }else{
+    const base=val/units[cat][from];
+    const result=base*units[cat][to];
+    unitResult.innerText=`${val} ${from} = ${result.toFixed(4)} ${to}`;
   }
-  const base=val/units[cat][from];
-  const res=base*units[cat][to];
-  unitResult.innerText=`${val} ${from} = ${res.toFixed(4)} ${to}`;
 }
+document.getElementById("unit-convert-btn").addEventListener("click", convertUnit);
 
-/******************************************************
- QR GENERATOR + DOWNLOAD
-******************************************************/
+/************ QR ************/
 function generateQR(){
-  const txt=document.getElementById("qr-input").value;
-  document.getElementById("qr-result").innerHTML=`<img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(txt)}">`;
-  document.getElementById("qr-download").style.display="block";
+  const txt=qr-input.value;
+  qr-result.innerHTML=`<img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(txt)}">`;
+  qr-download.style.display="block";
 }
-document.getElementById("qr-download").onclick=()=>{
-  const link=document.createElement("a");
-  link.download="qrcode.png";
-  link.href=document.getElementById("qrImg").src;
-  link.click();
+qr-download.onclick=()=>{
+  const a=document.createElement("a");
+  a.download="qrcode.png";
+  a.href=document.getElementById("qrImg").src;
+  a.click();
 };
 
-/******************************************************
- IMAGE RESIZER + DOWNLOAD
-******************************************************/
+/************ IMAGE ************/
 function resizeAndDisplayImage(){
-  const file=document.getElementById("image-upload").files[0];
-  if(!file) return alert("Upload first");
-  const w=+document.getElementById("resize-width").value;
-  const h=+document.getElementById("resize-height").value;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const img=new Image();
-    img.onload=()=>{
-      const canvas=document.createElement("canvas");
-      canvas.width=w; canvas.height=h;
-      canvas.getContext("2d").drawImage(img,0,0,w,h);
-      const url=canvas.toDataURL("image/png");
-      document.getElementById("image-result-display").innerHTML=`<img id="resizedImg" src="${url}">`;
-      document.getElementById("image-result-text").innerText="Resized successfully!";
-      document.getElementById("img-download").style.display="block";
-    }
-    img.src=e.target.result;
-  }
-  reader.readAsDataURL(file);
+  const f=document.getElementById("image-upload").files[0];
+  if(!f) return alert("Upload image");
+  const w=+resize-width.value,h=+resize-height.value;
+  const r=new FileReader();
+  r.onload=e=>{
+    const img=new Image(); img.onload=()=>{
+      const c=document.createElement("canvas");
+      c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);
+      const url=c.toDataURL("image/png");
+      image-result-display.innerHTML=`<img id="resizedImg" src="${url}">`;
+      image-result-text.innerText="Image resized!";
+      img-download.style.display="block";
+    }; img.src=e.target.result;
+  }; r.readAsDataURL(f);
 }
-document.getElementById("img-download").onclick=()=>{
-  const link=document.createElement("a");
-  link.download="resized.png";
-  link.href=document.getElementById("resizedImg").src;
-  link.click();
+img-download.onclick=()=>{
+  const a=document.createElement("a");
+  a.download="resized.png";
+  a.href=document.getElementById("resizedImg").src;
+  a.click();
 };
