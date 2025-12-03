@@ -1,16 +1,57 @@
 /* ============================================================
-   GLOBAL PANEL HANDLING
+   GLOBAL PANEL & HISTORY HANDLING
    ============================================================ */
 
+/**
+ * Shows a specific tool panel and updates the browser history.
+ * @param {string} id - The ID of the tool panel to show (e.g., 'currency').
+ */
 function showTool(id) {
     document.querySelectorAll(".tool-panel").forEach(p => p.style.display = "none");
     document.getElementById(id).style.display = "block";
     window.scrollTo(0, 0);
+
+    // 1. Add a new entry to the browser's history
+    // This allows the native back button to target this state.
+    history.pushState({ tool: id }, "", `/${id}`); 
 }
 
+/**
+ * Navigates back in the browser's history.
+ * The 'popstate' listener handles showing/hiding panels.
+ */
 function goBack() {
-    document.querySelectorAll(".tool-panel").forEach(p => p.style.display = "none");
+    // Uses the browser's native back functionality
+    history.back();
 }
+
+/**
+ * Handles browser's back/forward navigation (popstate event).
+ */
+window.addEventListener('popstate', function(event) {
+    // Hide all panels first
+    document.querySelectorAll(".tool-panel").forEach(p => p.style.display = "none");
+
+    // Check the history state to see what needs to be displayed
+    if (event.state && event.state.tool) {
+        // If the state includes a tool ID, show that panel
+        const toolId = event.state.tool;
+        const panel = document.getElementById(toolId);
+        if (panel) {
+            panel.style.display = "block";
+        }
+    } 
+    // If no state (e.g., back to the root '/'), all panels remain hidden,
+    // revealing the main tool list.
+    
+    window.scrollTo(0, 0);
+});
+
+// IMPORTANT: Initialize the history state on page load.
+// This ensures the root path '/' is the first history entry with a null state,
+// so when a user clicks a tool card, there is a proper 'previous' state to return to.
+history.replaceState({ tool: null }, "", "/");
+
 
 /* ============================================================
    SEARCH TOOL
@@ -24,7 +65,7 @@ document.getElementById("tool-search").addEventListener("input", function () {
 });
 
 /* ============================================================
-   CURRENCY CONVERTER + FAVORITES
+   CURRENCY CONVERTER + FAVORITES (No change needed)
    ============================================================ */
 
 const API_BASE = "https://www.easytoolilfy.com/api/exchange?base=";
@@ -119,7 +160,7 @@ async function convertCurrency() {
 }
 
 /* ============================================================
-   LIVE MONEY CHANGER TABLE — FULL FIXED VERSION
+   LIVE MONEY CHANGER TABLE — FULL FIXED VERSION (No change needed)
    ============================================================ */
 
 async function loadMYRTable() {
@@ -151,7 +192,7 @@ loadMYRTable();
 setInterval(loadMYRTable, 5 * 60 * 1000);
 
 /* ============================================================
-   UNIT CONVERTER
+   UNIT CONVERTER (No change needed)
    ============================================================ */
 
 const unitCategory = document.getElementById("unit-category");
@@ -223,7 +264,7 @@ function convertUnit() {
 }
 
 /* ============================================================
-   PASSWORD GENERATOR
+   PASSWORD GENERATOR (No change needed)
    ============================================================ */
 
 function generatePassword() {
@@ -239,7 +280,7 @@ function generatePassword() {
 }
 
 /* ============================================================
-   QR GENERATOR
+   QR GENERATOR (No change needed)
    ============================================================ */
 
 function generateQR() {
@@ -249,7 +290,7 @@ function generateQR() {
 }
 
 /* ============================================================
-   AGE CALCULATOR
+   AGE CALCULATOR (No change needed)
    ============================================================ */
 
 function calculateAge() {
@@ -263,7 +304,7 @@ function calculateAge() {
 }
 
 /* ============================================================
-   IMAGE RESIZER
+   IMAGE RESIZER (No change needed)
    ============================================================ */
 
 function resizeAndDisplayImage() {
