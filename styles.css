@@ -1,149 +1,341 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, sans-serif; }
 
+
+
 body {
-  background: linear-gradient(160deg, #6a11cb, #2575fc);
-  color: #fff;
-  min-height: 100vh;
+
+  background: linear-gradient(160deg, #6a11cb, #2575fc);
+
+  color: #fff;
+
+  min-height: 100vh;
+
 }
+
+
 
 main {
-  padding: 12px;
-  max-width: 600px;
-  margin: 0 auto;
+
+  padding: 12px;
+
+  max-width: 600px;
+
+  margin: 0 auto;
+
 }
+
+
 
 .site-header {
-  background: rgba(255,255,255,0.12);
-  padding: 18px;
-  text-align: center;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
+
+  background: rgba(255,255,255,0.12);
+
+  padding: 18px;
+
+  text-align: center;
+
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+
 }
 
+
+
 .brand h1 { font-size: 28px; }
+
 .brand p { font-size: 14px; opacity: 0.8; }
+
+
 
 .ad-block { margin: 15px 0; }
 
+
+
 .search-input {
-  width: 100%; padding: 14px;
-  margin: 14px 0;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.18);
-  border: none; color: #fff;
-  font-size: 16px;
-  outline: none;
+
+  width: 100%; padding: 14px;
+
+  margin: 14px 0;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.18);
+
+  border: none; color: #fff;
+
+  font-size: 16px;
+
+  outline: none;
+
 }
+
 .search-input::placeholder { color: rgba(255,255,255,0.6); }
 
+
+
 /******** CARDS ********/
+
 .tools {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 14px;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+
+  gap: 14px;
+
 }
+
+
 
 .tool-card {
-  background: rgba(255,255,255,0.22);
-  border-radius: 18px;
-  padding: 22px 10px;
-  text-align: center;
-  font-size: 30px;
-  transition: .25s ease;
-  cursor: pointer;
+
+  background: rgba(255,255,255,0.22);
+
+  border-radius: 18px;
+
+  padding: 22px 10px;
+
+  text-align: center;
+
+  font-size: 30px;
+
+  transition: .25s ease;
+
+  cursor: pointer;
+
 }
+
+
 
 .tool-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255,255,255,0.32);
+
+  transform: translateY(-4px);
+
+  background: rgba(255,255,255,0.32);
+
 }
+
+
 
 .tool-card p {
-  margin-top: 8px;
-  font-size: 16px;
-  font-weight: 500;
+
+  margin-top: 8px;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
 }
+
+
 
 /******** PANELS ********/
+
 .tool-panel {
-  position: fixed;
-  inset: 0;
-  background: #fff;
-  color: #222;
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 20;
-  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: #fff;
+
+  color: #222;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+  z-index: 20;
+
+  display: none;
+
 }
+
+
 
 .back-btn {
-  background: transparent;
-  color: #6a11cb;
-  font-size: 18px;
-  border: none;
-  margin-bottom: 10px;
-  cursor: pointer;
+
+  background: transparent;
+
+  color: #6a11cb;
+
+  font-size: 18px;
+
+  border: none;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
 }
+
+
 
 /******** FAVORITES ********/
+
 .currency-select-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
 }
+
+
 
 .fav-btn {
-  background: gold;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 20px;
+
+  background: gold;
+
+  border: none;
+
+  border-radius: 10px;
+
+  padding: 10px 12px;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
 }
 
-/* Base styling for input and select */
+
+
 input, select {
-  width: 100%; padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
+
+  width: 100%; padding: 12px;
+
+  margin: 8px 0;
+
+  border-radius: 8px;
+
+  border: 1px solid #ddd;
+
+  font-size: 16px;
+
 }
 
-/* Specific styling for select to fix dropdown direction */
-select {
-    position: relative; 
-    /* This rule must come AFTER the shared input, select rule */
-}
 
 
 button {
-  width: 100%; padding: 14px;
-  margin-top: 15px;
-  border: none; color: #fff;
-  font-weight: 700;
-  font-size: 17px;
-  border-radius: 12px;
-  background: linear-gradient(120deg,#6a11cb,#2575fc);
-  cursor: pointer;
+
+  width: 100%; padding: 14px;
+
+  margin-top: 15px;
+
+  border: none; color: #fff;
+
+  font-weight: 700;
+
+  font-size: 17px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(120deg,#6a11cb,#2575fc);
+
+  cursor: pointer;
+
 }
+
+
 
 .result-text {
-  margin-top: 15px;
-  padding: 10px;
-  font-size: 16px;
-  color: #111;
-  border-left: 5px solid #6a11cb;
-  background: #f0f8ff;
-  border-radius: 4px;
+
+  margin-top: 15px;
+
+  padding: 10px;
+
+  font-size: 16px;
+
+  color: #111;
+
+  border-left: 5px solid #6a11cb;
+
+  background: #f0f8ff;
+
+  border-radius: 4px;
+
 }
 
-/******** FOOTER ********/
-/* NOTE: The TABLE section is now removed as it was unnecessary after API removal */
-.footer {
-  text-align:center;
-  padding:20px;
-  opacity:0.7;
-  margin-top:40px;
+
+
+/******** TABLE ********/
+
+.rate-table-title {
+
+  margin-top: 25px;
+
+  color: #6a11cb;
+
+  font-weight: 700;
+
+  font-size: 18px;
+
 }
+
+
+
+.rates-table-wrap {
+
+  background: #fff;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  border: 1px solid #eee;
+
+}
+
+
+
+.rates-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+}
+
+
+
+.rates-table th {
+
+  background: #6a11cb;
+
+  color: #fff;
+
+  padding: 12px;
+
+  text-align: left;
+
+}
+
+
+
+.rates-table td {
+
+  padding: 12px;
+
+  border-bottom: 1px solid #eee;
+
+}
+
+
+
+.footer {
+
+  text-align:center;
+
+  padding:20px;
+
+  opacity:0.7;
+
+  margin-top:40px;
+
+}
+
+
 
 .footer a { color:#fff; text-decoration:underline; }
