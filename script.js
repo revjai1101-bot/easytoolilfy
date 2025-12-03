@@ -1,5 +1,5 @@
 /* ============================================================
-   GLOBAL PANEL & HISTORY HANDLING
+   GLOBAL PANEL & HISTORY HANDLING (Back Button Fix)
    ============================================================ */
 
 /**
@@ -12,13 +12,11 @@ function showTool(id) {
     window.scrollTo(0, 0);
 
     // 1. Add a new entry to the browser's history
-    // This allows the native back button to target this state.
     history.pushState({ tool: id }, "", `/${id}`); 
 }
 
 /**
  * Navigates back in the browser's history.
- * The 'popstate' listener handles showing/hiding panels.
  */
 function goBack() {
     // Uses the browser's native back functionality
@@ -40,16 +38,17 @@ window.addEventListener('popstate', function(event) {
         if (panel) {
             panel.style.display = "block";
         }
-    } 
-    // If no state (e.g., back to the root '/'), all panels remain hidden,
-    // revealing the main tool list.
+    } else {
+        // If back at the root '/', re-push a disposable state to prevent exiting the site
+        setTimeout(() => {
+            history.pushState({ tool: null }, "", "/");
+        }, 0); 
+    }
     
     window.scrollTo(0, 0);
 });
 
 // IMPORTANT: Initialize the history state on page load.
-// This ensures the root path '/' is the first history entry with a null state,
-// so when a user clicks a tool card, there is a proper 'previous' state to return to.
 history.replaceState({ tool: null }, "", "/");
 
 
@@ -65,10 +64,11 @@ document.getElementById("tool-search").addEventListener("input", function () {
 });
 
 /* ============================================================
-   CURRENCY CONVERTER + FAVORITES (No change needed)
+   CURRENCY CONVERTER + FAVORITES
    ============================================================ */
 
-const API_BASE = "https://www.easytoolilfy.com/api/exchange?base=";
+// WARNING: This API base URL will likely fail since the Vercel API function was removed.
+const API_BASE = "https://www.easytoolilfy.com/api/exchange?base="; 
 
 const topCurrencies = [
     "USD","EUR","GBP","JPY","AUD","CAD","SGD","CHF","THB","IDR","CNY","HKD","NZD","SAR",
@@ -160,7 +160,7 @@ async function convertCurrency() {
 }
 
 /* ============================================================
-   LIVE MONEY CHANGER TABLE — FULL FIXED VERSION (No change needed)
+   LIVE MONEY CHANGER TABLE
    ============================================================ */
 
 async function loadMYRTable() {
@@ -192,7 +192,7 @@ loadMYRTable();
 setInterval(loadMYRTable, 5 * 60 * 1000);
 
 /* ============================================================
-   UNIT CONVERTER (No change needed)
+   UNIT CONVERTER
    ============================================================ */
 
 const unitCategory = document.getElementById("unit-category");
@@ -264,7 +264,7 @@ function convertUnit() {
 }
 
 /* ============================================================
-   PASSWORD GENERATOR (No change needed)
+   PASSWORD GENERATOR
    ============================================================ */
 
 function generatePassword() {
@@ -280,17 +280,18 @@ function generatePassword() {
 }
 
 /* ============================================================
-   QR GENERATOR (No change needed)
+   QR GENERATOR
    ============================================================ */
 
 function generateQR() {
     const text = document.getElementById("qr-input").value;
+    // Note: This relies on an external, free API (qrserver.com)
     document.getElementById("qr-result").innerHTML =
         `<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(text)}" />`;
 }
 
 /* ============================================================
-   AGE CALCULATOR (No change needed)
+   AGE CALCULATOR
    ============================================================ */
 
 function calculateAge() {
@@ -304,7 +305,7 @@ function calculateAge() {
 }
 
 /* ============================================================
-   IMAGE RESIZER (No change needed)
+   IMAGE RESIZER
    ============================================================ */
 
 function resizeAndDisplayImage() {
