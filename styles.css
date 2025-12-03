@@ -14,45 +14,56 @@ main {
 
 .site-header {
   background: rgba(255,255,255,0.12);
-  padding: 18px;
+  padding: 20px;
   text-align: center;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
 }
 
 .search-input {
   width: 100%; padding: 14px;
-  margin: 14px 0;
+  margin: 18px 0;
   border-radius: 12px;
   background: rgba(255,255,255,0.18);
   border: none; color: #fff;
   font-size: 16px;
-  outline: none;
 }
 
 .tools {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
 .tool-card {
   background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px);
   border-radius: 18px;
-  padding: 22px 10px;
+  padding: 28px 10px;
   text-align: center;
-  font-size: 30px;
+  font-size: 28px;
   cursor: pointer;
+  transition: .25s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.32);
+}
+
+.tool-card p {
+  margin-top: 6px;
+  font-size: 16px;
 }
 
 .tool-panel {
-  position: fixed;
+  position: fixed !important;
   inset: 0;
   background: #fff;
   color: #111;
   padding: 20px;
   overflow-y: auto;
-  overscroll-behavior: contain; /* Prevent popup scroll jump */
-  z-index: 20;
+  overscroll-behavior: contain;
+  z-index: 50;
   display: none;
 }
 
@@ -61,45 +72,50 @@ main {
   gap: 10px;
   align-items: center;
   position: relative;
-  padding-bottom: 45px; /* Space for dropdown */
+  padding-bottom: 45px;
 }
 
 select {
   width: 100%; padding: 12px;
-  margin: 8px 0;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
+  border: 1px solid #ccc;
   background: #fff;
-  color: #000;
+  color: #111;
   position: relative;
-  z-index: 100; /* Raise above UI */
-}
-
-.fav-btn {
-  background: gold;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 20px;
+  z-index: 100;
 }
 
 button {
   width: 100%; padding: 14px;
   margin-top: 15px;
-  border: none; color: #fff;
-  font-weight: 700;
-  font-size: 17px;
-  border-radius: 12px;
+  border-radius: 10px;
   background: linear-gradient(120deg,#6a11cb,#2575fc);
+  color: #fff;
+  font-weight: 700;
+  border: none;
   cursor: pointer;
 }
 
 .result-text {
   margin-top: 15px;
-  padding: 10px;
-  color: #111;
-  background: #f0f8ff;
-  border-radius: 4px;
+  background: #eef4ff;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid #6a11cb;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #6a11cb;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 80px;
+  opacity: 0.7;
+  font-size: 14px;
 }
