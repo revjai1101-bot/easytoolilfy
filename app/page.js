@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image"; // Import Next.js Image component
 
 export default function Home() {
   const [inputNote, setInputNote] = useState("");
@@ -162,7 +163,7 @@ export default function Home() {
           </div>
 
           {/* ======================================================== */}
-          {/* THE KNOWLEDGE HUB (MASSIVE CONTENT SECTION)              */}
+          {/* THE KNOWLEDGE HUB (Text + Video)                         */}
           {/* ======================================================== */}
           <article className="mt-24 border-t border-gray-800 pt-16 max-w-6xl mx-auto text-gray-300">
             
@@ -180,77 +181,56 @@ export default function Home() {
               <p className="text-lg leading-relaxed text-gray-200 border-l-4 border-blue-500 pl-6 mb-6">
                 The technical process of transforming unstructured data (logs, shorthand, brain dumps) into standardized, compliant documentation using Natural Language Processing (NLP). This aligns with ISO 9001 quality management standards for record-keeping.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                 <div className="bg-gray-900 p-5 rounded-lg">
-                    <h4 className="text-blue-400 font-bold mb-3">Core Applications</h4>
-                    <ul className="list-disc list-inside text-sm space-y-2 text-gray-300">
-                        <li><strong>Incident Post-Mortems:</strong> Structuring root cause analysis.</li>
-                        <li><strong>Change Management:</strong> Documenting RFCs and system updates.</li>
-                        <li><strong>Knowledge Transfer:</strong> Creating wiki entries for team on-boarding.</li>
-                    </ul>
-                 </div>
-                 <div className="bg-gray-900 p-5 rounded-lg">
-                    <h4 className="text-red-400 font-bold mb-3">Risk Mitigation</h4>
-                    <ul className="list-disc list-inside text-sm space-y-2 text-gray-300">
-                        <li><strong>Ambiguity Reduction:</strong> Eliminating vague terms like "system is slow."</li>
-                        <li><strong>Standardization:</strong> Ensuring all shifts report issues identically.</li>
-                        <li><strong>Searchability:</strong> Creating indexable keywords for future retrieval.</li>
-                    </ul>
-                 </div>
-              </div>
             </div>
 
-            {/* NEW SECTION: THE HISTORY OF DOCUMENTATION */}
+            {/* NEW: VIDEO LEARNING CENTER */}
             <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6">Chapter 1: The Evolution of Technical Writing</h3>
-               <p className="mb-6 leading-relaxed">
-                  The history of technical documentation mirrors the history of engineering itself. In the early days of computing (the Mainframe Era), documentation was often written by dedicated scribes on physical paper. As we moved into the Agile era, the philosophy shifted to "Working software over comprehensive documentation" (Agile Manifesto, 2001).
-               </p>
-               <p className="mb-6 leading-relaxed">
-                  However, the "No Docs" movement created a massive technical debt crisis. In the modern DevOps era (2015-Present), we have realized that <strong>Communication is Infrastructure</strong>. Code that is not documented is code that cannot be maintained. NoteRefiner represents the next evolutionary step: <strong>Documentation as Code</strong>, generated automatically by AI to keep pace with rapid CI/CD deployment cycles.
-               </p>
-            </div>
-
-            {/* NEW SECTION: THE PSYCHOLOGY OF CLEAR NOTES */}
-            <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6">Chapter 2: Cognitive Load Theory in Engineering</h3>
-               <div className="flex flex-col md:flex-row gap-8">
-                  <div className="w-full md:w-1/2">
-                    <p className="mb-4 leading-relaxed">
-                        John Sweller's Cognitive Load Theory (1988) explains why bad notes are dangerous. The human brain has a limited "Working Memory." When an engineer reads a messy log like <em>"server broken maybe db issue idk,"</em> their brain wastes energy decoding the text instead of solving the problem.
-                    </p>
-                    <p className="leading-relaxed">
-                        This is called "Extraneous Cognitive Load." NoteRefiner eliminates this load. By formatting the text into a standard <strong>Problem &gt; Analysis &gt; Solution</strong> structure, the tool reduces mental friction, allowing the engineer to enter a "Flow State" faster.
-                    </p>
+               <h3 className="text-2xl font-bold text-white mb-6">Video Learning Center</h3>
+               <p className="mb-8 text-gray-400">Master the art of technical communication with these curated resources from industry leaders.</p>
+               
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Video 1: Google SRE */}
+                  <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                     <div className="aspect-w-16 aspect-h-9 mb-4">
+                        <iframe 
+                           className="w-full h-64 rounded-lg"
+                           src="https://www.youtube.com/embed/ciUP1g_9dTA" 
+                           title="SRE at Google"
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                           allowFullScreen
+                        ></iframe>
+                     </div>
+                     <h4 className="text-lg font-bold text-white mb-2">Google SRE: The Role of Documentation</h4>
+                     <p className="text-sm text-gray-400">Learn how Google Site Reliability Engineers use documentation to prevent system outages.</p>
                   </div>
-                  <div className="w-full md:w-1/2 bg-gray-800 p-6 rounded-lg">
-                     <h4 className="text-lg font-bold text-white mb-3">The "Miller's Law" Application</h4>
-                     <p className="text-sm text-gray-400 mb-4">
-                        Miller's Law states the average person can only hold 7 (plus or minus 2) items in their working memory.
-                     </p>
-                     <ul className="list-disc list-inside text-sm text-gray-300 space-y-2">
-                        <li><strong>Messy Note:</strong> Contains 20+ unrelated facts scattered randomly. (Overloads memory)</li>
-                        <li><strong>Refined Note:</strong> Groups facts into 3 clear headers: Issue, Logs, Fix. (Fits in memory)</li>
-                     </ul>
+
+                  {/* Video 2: Technical Writing */}
+                  <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                     <div className="aspect-w-16 aspect-h-9 mb-4">
+                        <iframe 
+                           className="w-full h-64 rounded-lg"
+                           src="https://www.youtube.com/embed/N2zK3sAtr-4" 
+                           title="Technical Writing Course"
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                           allowFullScreen
+                        ></iframe>
+                     </div>
+                     <h4 className="text-lg font-bold text-white mb-2">Technical Writing for Developers</h4>
+                     <p className="text-sm text-gray-400">A crash course in writing clear, concise, and professional engineering logs.</p>
                   </div>
                </div>
             </div>
 
-            {/* REAL WORLD STORIES */}
+            {/* 2. REAL WORLD STORIES */}
             <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6 border-l-4 border-red-500 pl-4">Chapter 3: Case Studies of Failure</h3>
-               <p className="mb-8 text-gray-400">History is filled with expensive disasters caused not by bad code, but by bad communication. These stories highlight why tools like NoteRefiner are critical for mission-critical environments.</p>
-               
+               <h3 className="text-2xl font-bold text-white mb-6 border-l-4 border-red-500 pl-4">Case Studies: The Cost of Poor Documentation</h3>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Story 1 */}
                   <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-red-500 transition">
                      <h4 className="text-xl font-bold text-white mb-2">The Mars Climate Orbiter ($327M Loss)</h4>
                      <p className="text-sm text-gray-400 mb-4 italic">September 1999</p>
                      <p className="text-sm leading-relaxed mb-4">
-                        NASA lost a $327 million spacecraft because of a simple documentation error. One engineering team used <strong>Metric units</strong> (Newtons) while another used <strong>Imperial units</strong> (Pounds-force) in their software specifications. 
-                     </p>
-                     <p className="text-sm font-bold text-red-400">
-                        The Lesson: Standardized formats save lives. Ambiguity in units or error codes is unacceptable.
+                        NASA lost a $327 million spacecraft because of a simple documentation error. One engineering team used <strong>Metric units</strong> (Newtons) while another used <strong>Imperial units</strong> (Pounds-force). 
                      </p>
                   </div>
 
@@ -259,104 +239,82 @@ export default function Home() {
                      <h4 className="text-xl font-bold text-white mb-2">The Knight Capital Glitch ($440M Loss)</h4>
                      <p className="text-sm text-gray-400 mb-4 italic">August 2012</p>
                      <p className="text-sm leading-relaxed mb-4">
-                        In just 45 minutes, Knight Capital Group lost $440 million due to a failed deployment. An engineer forgot to copy new code to one of the eight servers because the <strong>deployment manual was outdated</strong> and unstructured.
-                     </p>
-                     <p className="text-sm font-bold text-red-400">
-                        The Lesson: Checklists and clear "Steps to Reproduce" are not optional.
+                        In just 45 minutes, Knight Capital Group lost $440 million due to a failed deployment. An engineer forgot to copy new code because the <strong>deployment manual was outdated</strong>.
                      </p>
                   </div>
                </div>
             </div>
 
-            {/* NEW SECTION: ITIL & ITSM FRAMEWORKS */}
+            {/* NEW: VISUAL WORKFLOW DIAGRAM (CSS Based - No Image File Needed) */}
             <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6">Chapter 4: ITIL Framework Compliance</h3>
-               <p className="mb-6 leading-relaxed">
-                  The Information Technology Infrastructure Library (ITIL) is the global standard for IT Service Management (ITSM). NoteRefiner is designed to help organizations adhere to <strong>ITIL v4</strong> practices, specifically in the Service Operation lifecycle.
-               </p>
-               
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                   <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-800">
-                       <h4 className="font-bold text-blue-400 mb-2">Incident Management</h4>
-                       <p className="text-sm text-gray-300">ITIL requires strict recording of incidents. Our tool ensures every ticket includes a categorization, prioritization, and resolution timestamp.</p>
-                   </div>
-                   <div className="bg-green-900/20 p-6 rounded-lg border border-green-800">
-                       <h4 className="font-bold text-green-400 mb-2">Problem Management</h4>
-                       <p className="text-sm text-gray-300">Distinguishing between an "Incident" (one-time event) and a "Problem" (root cause) requires clear notes. We help document the Known Error Database (KEDB).</p>
-                   </div>
-                   <div className="bg-purple-900/20 p-6 rounded-lg border border-purple-800">
-                       <h4 className="font-bold text-purple-400 mb-2">Knowledge Management</h4>
-                       <p className="text-sm text-gray-300">The goal of ITIL is to shift knowledge "Left"—making it available to Level 1 support. Our KB Article mode creates artifacts for the Service Desk.</p>
-                   </div>
+               <h3 className="text-2xl font-bold text-white mb-8">How NoteRefiner Works (Architecture)</h3>
+               <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+                  
+                  {/* Step 1 */}
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-600 w-full relative">
+                     <div className="text-4xl mb-4">🧠</div>
+                     <h4 className="font-bold text-white">1. Input</h4>
+                     <p className="text-sm text-gray-400">Messy Notes</p>
+                     {/* Arrow for Desktop */}
+                     <div className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 text-gray-500 text-2xl">➔</div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="bg-blue-900/40 p-6 rounded-lg border border-blue-500 w-full relative">
+                     <div className="text-4xl mb-4">⚙️</div>
+                     <h4 className="font-bold text-blue-300">2. Processing</h4>
+                     <p className="text-sm text-blue-200">Gemma-3 AI Engine</p>
+                     <div className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 text-gray-500 text-2xl">➔</div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="bg-green-900/40 p-6 rounded-lg border border-green-500 w-full">
+                     <div className="text-4xl mb-4">📄</div>
+                     <h4 className="font-bold text-green-300">3. Output</h4>
+                     <p className="text-sm text-green-200">Standardized Docs</p>
+                  </div>
                </div>
             </div>
 
             {/* 3. STATISTICS & FACTS */}
             <div className="mb-20 bg-gray-800/50 p-8 rounded-xl border border-gray-700">
-               <h3 className="text-2xl font-bold text-white mb-8 text-center">Chapter 5: The ROI of Documentation</h3>
+               <h3 className="text-2xl font-bold text-white mb-8 text-center">The ROI of Documentation</h3>
                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                   <div>
                      <div className="text-4xl font-black text-blue-400 mb-2">19%</div>
-                     <p className="text-sm text-gray-300">of a knowledge worker's week is spent just <strong>searching</strong> for information and reading internal docs (Source: McKinsey).</p>
+                     <p className="text-sm text-gray-300">of a knowledge worker's week is spent just <strong>searching</strong> for information.</p>
                   </div>
                   <div>
                      <div className="text-4xl font-black text-blue-400 mb-2">$5k</div>
-                     <p className="text-sm text-gray-300">is the estimated annual cost per employee due to productivity loss from "Knowledge Barriers" (Source: IDC).</p>
+                     <p className="text-sm text-gray-300">annual cost per employee due to productivity loss from "Knowledge Barriers".</p>
                   </div>
                   <div>
                      <div className="text-4xl font-black text-blue-400 mb-2">40%</div>
-                     <p className="text-sm text-gray-300">of IT incidents are caused by <strong>Change Management</strong> errors, often due to poor handover notes (Source: Gartner).</p>
+                     <p className="text-sm text-gray-300">of IT incidents are caused by <strong>Change Management</strong> errors.</p>
                   </div>
                </div>
             </div>
 
-            {/* 4. MOTIVATION: THE "TOIL" PROBLEM */}
+            {/* 4. ITIL FRAMEWORKS */}
             <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6">Chapter 6: Ending the Burnout of "Toil"</h3>
-               <div className="flex flex-col md:flex-row items-center gap-8">
-                  <div className="w-full md:w-1/2">
-                     <p className="text-gray-300 leading-relaxed mb-4">
-                        In Site Reliability Engineering (SRE), Google defines <strong>"Toil"</strong> as work that is manual, repetitive, automated-able, and devoid of enduring value. 
-                     </p>
-                     <p className="text-gray-300 leading-relaxed mb-4">
-                        Formatting Jira tickets, cleaning up meeting minutes, and rewriting email updates are the definition of Toil. It drains your mental energy (Cognitive Load), leaving you with less brainpower for solving complex server issues.
-                     </p>
-                     <p className="text-white font-bold border-l-4 border-green-500 pl-4">
-                        NoteRefiner is an Anti-Toil Tool. By automating the formatting, you reclaim your focus for high-value engineering.
-                     </p>
-                  </div>
-                  <div className="w-full md:w-1/2 bg-gray-800 p-6 rounded-lg border border-gray-700">
-                     <h4 className="text-lg font-bold text-white mb-3">The "Broken Telephone" Effect</h4>
-                     <ul className="space-y-4 text-sm text-gray-400">
-                        <li className="flex items-center gap-3">
-                           <span className="bg-red-900 text-red-300 px-2 py-1 rounded text-xs">Support</span>
-                           <span>"User says internet is slow." (Vague)</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                           <span className="bg-yellow-900 text-yellow-300 px-2 py-1 rounded text-xs">QA Team</span>
-                           <span>"Testing internet speed... seems fine?" (Confusion)</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                           <span className="bg-green-900 text-green-300 px-2 py-1 rounded text-xs">NoteRefiner</span>
-                           <span className="text-white font-bold">"Latency &gt; 500ms detected on API Gateway US-East." (Actionable)</span>
-                        </li>
-                     </ul>
-                  </div>
+               <h3 className="text-2xl font-bold text-white mb-6">ITIL Framework Compliance</h3>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                   <div className="bg-blue-900/20 p-6 rounded-lg border border-blue-800">
+                       <h4 className="font-bold text-blue-400 mb-2">Incident Management</h4>
+                       <p className="text-sm text-gray-300">ITIL requires strict recording of incidents. Our tool ensures every ticket includes a categorization and prioritization.</p>
+                   </div>
+                   <div className="bg-green-900/20 p-6 rounded-lg border border-green-800">
+                       <h4 className="font-bold text-green-400 mb-2">Problem Management</h4>
+                       <p className="text-sm text-gray-300">Distinguishing between an "Incident" (one-time event) and a "Problem" (root cause) requires clear notes.</p>
+                   </div>
+                   <div className="bg-purple-900/20 p-6 rounded-lg border border-purple-800">
+                       <h4 className="font-bold text-purple-400 mb-2">Knowledge Management</h4>
+                       <p className="text-sm text-gray-300">The goal of ITIL is to shift knowledge "Left"—making it available to Level 1 support.</p>
+                   </div>
                </div>
             </div>
 
-            {/* NEW SECTION: REMOTE WORK & ASYNC COMM */}
-            <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6">Chapter 7: The Remote Work Revolution</h3>
-               <p className="mb-6 leading-relaxed">
-                  In the post-2020 era, Remote Work is the norm. This means you cannot just tap a colleague on the shoulder to explain a bug. Your writing must stand alone. This is called <strong>Asynchronous Communication</strong>.
-               </p>
-               <p className="mb-6 leading-relaxed">
-                  If your notes are clear, your team in a different time zone (e.g., London or Tokyo) can pick up the work while you sleep. If your notes are vague, they lose a whole day waiting for you to wake up. NoteRefiner acts as a universal translator, ensuring that your "handover notes" are culturally neutral, grammatically correct, and technically precise, enabling true "Follow the Sun" support models.
-               </p>
-            </div>
-
-            {/* 5. RECOMMENDED LEARNING PATHS */}
+            {/* 5. CAREER GROWTH RESOURCES */}
             <div className="mb-20">
               <h3 className="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-4">Career Growth Resources</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -378,25 +336,6 @@ export default function Home() {
                     <p className="text-sm text-gray-400 flex-1">Understand the networking protocols (TCP/IP, DNS) cited in technical logs.</p>
                   </div>
                 </a>
-              </div>
-            </div>
-
-            {/* 6. FAQ */}
-            <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h3>
-              <div className="space-y-6">
-                <div>
-                   <h4 className="text-white font-bold mb-2">How accurate is the AI refinement?</h4>
-                   <p className="text-sm text-gray-400">NoteRefiner uses advanced Generative AI models (Gemini 2.5 Flash / Gemma 3) which are specifically tuned for code and technical language.</p>
-                </div>
-                <div>
-                   <h4 className="text-white font-bold mb-2">Does this work for coding languages?</h4>
-                   <p className="text-sm text-gray-400">Yes. If you paste a snippet of Python or SQL error logs, the AI will recognize the code and format it into a Markdown code block.</p>
-                </div>
-                <div>
-                   <h4 className="text-white font-bold mb-2">Is this compliant with Data Privacy?</h4>
-                   <p className="text-sm text-gray-400">Yes. We do not store your input text on our servers. The text is processed in real-time and returned to your browser.</p>
-                </div>
               </div>
             </div>
 
