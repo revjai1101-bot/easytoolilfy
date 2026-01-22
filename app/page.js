@@ -9,6 +9,7 @@ export default function Home() {
   const [savedNotes, setSavedNotes] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Load saved data on mount
   useEffect(() => {
     const data = localStorage.getItem("my_tech_notes");
     if (data) setSavedNotes(JSON.parse(data));
@@ -63,7 +64,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-900 text-white font-sans flex flex-col">
       <main className="flex-1 flex flex-col md:flex-row">
         
-        {/* SIDEBAR */}
+        {/* History Sidebar */}
         <aside className="w-full md:w-1/4 bg-gray-800 border-r border-gray-700 p-4 flex flex-col h-[500px] md:h-auto">
           <h2 className="text-xl font-bold text-blue-400 mb-4">Saved Logs</h2>
           <input 
@@ -93,7 +94,7 @@ export default function Home() {
           </div>
         </aside>
 
-        {/* MAIN TOOL AREA */}
+        {/* Main Application Area */}
         <section className="flex-1 p-6 md:p-10 overflow-y-auto">
           <header className="mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
@@ -117,7 +118,7 @@ export default function Home() {
           </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[500px]">
-            {/* INPUT */}
+            {/* Input Section */}
             <div className="flex flex-col h-full">
               <label className="mb-2 text-gray-400 text-sm font-semibold">1. Paste Rough Notes</label>
               <textarea
@@ -128,7 +129,7 @@ export default function Home() {
               />
             </div>
 
-            {/* OUTPUT */}
+            {/* Result Section */}
             <div className="flex flex-col h-full">
               <label className="mb-2 text-gray-400 text-sm font-semibold">2. AI Refined Output</label>
               <div className="flex-1 bg-gray-800 border border-gray-700 rounded-lg p-4 text-gray-200 overflow-auto whitespace-pre-wrap shadow-inner">
@@ -160,85 +161,172 @@ export default function Home() {
             </button>
           </div>
 
-          {/* --- NEW "DICTIONARY STYLE" CONTENT SECTION --- */}
+          {/* User Documentation & Guide */}
           <article className="mt-24 border-t border-gray-800 pt-12 max-w-5xl mx-auto text-gray-300">
             
-            {/* 1. DEFINITION SECTION */}
-            <div className="mb-12">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-white mb-4">The Documentation Academy</h2>
+              <p className="text-xl text-gray-400">Mastering the Art of Technical Communication</p>
+            </div>
+
+            {/* Glossary Section */}
+            <div className="mb-16 bg-gray-800 p-8 rounded-xl border border-gray-700">
               <div className="flex items-baseline gap-4 mb-4">
-                <h2 className="text-4xl font-bold text-white">note refine</h2>
+                <h3 className="text-3xl font-bold text-white">note refine</h3>
                 <span className="text-gray-500 italic text-xl">verb</span>
               </div>
-              <p className="text-xl leading-relaxed text-gray-200 border-l-4 border-blue-500 pl-4">
-                The process of converting unstructured, shorthand, or messy text into professional, grammatically correct documentation using Artificial Intelligence.
+              <p className="text-lg leading-relaxed text-gray-200 border-l-4 border-blue-500 pl-6 mb-6">
+                The process of using Large Language Models (LLMs) to transform unstructured, shorthand, or "messy" input text into professional, standardized documentation suitable for business environments.
               </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div>
+                    <h4 className="text-sm font-bold text-gray-400 uppercase mb-2">Synonyms</h4>
+                    <p className="text-white">Text Polishing, Automated Reporting, AI Summarization, Ticket Scrubbing.</p>
+                 </div>
+                 <div>
+                    <h4 className="text-sm font-bold text-gray-400 uppercase mb-2">Antonyms</h4>
+                    <p className="text-white">Brain Dumps, Shorthand, Rough Drafts, Unstructured Data.</p>
+                 </div>
+              </div>
             </div>
 
-            {/* 2. SYNONYMS & RELATED FORMATS */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-lg font-bold text-white mb-3 border-b border-gray-600 pb-2">Synonyms (Use Cases)</h3>
-                <ul className="space-y-3 text-sm">
-                  <li><strong className="text-blue-400">Meeting Minutes:</strong> A structured written record of a meeting, including attendees, decisions made, and action items.</li>
-                  <li><strong className="text-blue-400">IT Ticket Logs:</strong> Technical documentation describing a system error, steps to reproduce, and resolution status (Jira/ServiceNow).</li>
-                  <li><strong className="text-blue-400">Executive Summaries:</strong> A short document that summarizes a longer report or proposal for management.</li>
-                </ul>
+            {/* Educational Resources */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white border-b border-blue-500 pb-2 inline-block">1. The Clarity Crisis</h3>
+                <p className="text-sm leading-relaxed">
+                  In System Support and QA, "clarity" is not a luxury; it is a requirement. A vague bug report like "Login isn't working" can waste hours of developer time. NoteRefiner forces structure onto chaos, ensuring that every report contains the vital "Who, What, Where, and How."
+                </p>
               </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white border-b border-green-500 pb-2 inline-block">2. The "Bus Factor"</h3>
+                <p className="text-sm leading-relaxed">
+                  If only one person knows how to fix the server, your company has a high "Bus Factor" risk. By converting your mental notes into a searchable <strong>Knowledge Base Article</strong>, you democratize information. NoteRefiner helps you leave a paper trail that anyone can follow.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white border-b border-purple-500 pb-2 inline-block">3. Professionalism</h3>
+                <p className="text-sm leading-relaxed">
+                  Sending an email full of typos and lowercase letters damages your professional reputation. Our <strong>Professional Email</strong> mode acts as a safeguard, ensuring that even your quickest updates sound measured, polite, and corporate-ready.
+                </p>
+              </div>
+            </div>
+
+            {/* Best Practices Guide */}
+            <div className="mb-16">
+               <h3 className="text-2xl font-bold text-white mb-6">Best Practices for Technical Notes</h3>
+               <div className="bg-gray-800 rounded-lg overflow-hidden">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-gray-700 text-gray-300 text-sm uppercase">
+                        <th className="p-4">Component</th>
+                        <th className="p-4">Why it is Critical</th>
+                        <th className="p-4">Example</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-700 text-sm">
+                      <tr>
+                        <td className="p-4 font-bold text-white">Action Items</td>
+                        <td className="p-4">Without a clear owner and deadline, tasks are forgotten.</td>
+                        <td className="p-4 text-green-400">"John to restart SQL Service by 3 PM."</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 font-bold text-white">Steps to Reproduce</td>
+                        <td className="p-4">Developers cannot fix what they cannot see.</td>
+                        <td className="p-4 text-green-400">"1. Open App. 2. Click Login. 3. See Error 500."</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 font-bold text-white">Environment</td>
+                        <td className="p-4">Bugs often only appear on specific OS or Browsers.</td>
+                        <td className="p-4 text-green-400">"Windows 11, Chrome Version 120."</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 font-bold text-white">Severity</td>
+                        <td className="p-4">Helps management prioritize resources.</td>
+                        <td className="p-4 text-red-400">"Critical - Production Down."</td>
+                      </tr>
+                    </tbody>
+                  </table>
+               </div>
+            </div>
+
+            {/* Feature Overview */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-white mb-8">Understanding the Modes</h3>
               
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-lg font-bold text-white mb-3 border-b border-gray-600 pb-2">Antonyms (What it fixes)</h3>
-                <ul className="space-y-3 text-sm">
-                  <li><strong className="text-red-400">Brain Dumps:</strong> Unfiltered, disorganized thoughts written down quickly without structure.</li>
-                  <li><strong className="text-red-400">Shorthand:</strong> Abbreviated writing that is often difficult for others to understand (e.g., "svr down pls fix").</li>
-                  <li><strong className="text-red-400">Drafts:</strong> Preliminary versions of documents that contain typos and grammatical errors.</li>
-                </ul>
+              <div className="space-y-8">
+                <div className="flex flex-col md:flex-row gap-6">
+                   <div className="w-full md:w-1/3">
+                      <h4 className="text-lg font-bold text-blue-400 mb-2">IT Ticket Log</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">For: QA, Support, DevOps</p>
+                   </div>
+                   <div className="w-full md:w-2/3">
+                      <p className="text-sm mb-2">
+                        This mode is designed to feed directly into systems like <strong>Jira, ServiceNow, or Zendesk</strong>. It takes a stream of consciousness description of a bug and breaks it down into the industry-standard structure: Summary, Description, Environment, and Steps to Reproduce.
+                      </p>
+                      <p className="text-sm text-gray-400 italic">"Use this when you find a bug but don't want to spend 15 minutes formatting the ticket."</p>
+                   </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-6 border-t border-gray-700 pt-8">
+                   <div className="w-full md:w-1/3">
+                      <h4 className="text-lg font-bold text-green-400 mb-2">Meeting Minutes</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">For: PMs, Scrum Masters</p>
+                   </div>
+                   <div className="w-full md:w-2/3">
+                      <p className="text-sm mb-2">
+                        Meeting notes are often messy and chronological. This mode ignores the timeline and focuses on the <strong>outcome</strong>. It extracts key decisions and assigns action items to specific people.
+                      </p>
+                      <p className="text-sm text-gray-400 italic">"Use this after a Daily Standup or Client Sync to send a quick summary email."</p>
+                   </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-6 border-t border-gray-700 pt-8">
+                   <div className="w-full md:w-1/3">
+                      <h4 className="text-lg font-bold text-purple-400 mb-2">Knowledge Base Article</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">For: Tech Writers, Onboarding</p>
+                   </div>
+                   <div className="w-full md:w-2/3">
+                      <p className="text-sm mb-2">
+                        When you solve a difficult problem, you should document it. This mode creates a "Problem > Solution" article suitable for Confluence or Notion. It focuses on clarity and searchability.
+                      </p>
+                      <p className="text-sm text-gray-400 italic">"Use this to document the solution to a recurring server error."</p>
+                   </div>
+                </div>
               </div>
             </div>
 
-            {/* 3. EXAMPLES IN CONTEXT */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-white mb-6">Examples of Note Refining</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="border border-gray-700 p-4 rounded bg-gray-900/50">
-                  <span className="text-xs font-bold text-red-400 uppercase tracking-wider">Before (Raw Input)</span>
-                  <p className="mt-2 font-mono text-sm text-gray-400">"bob said api 500 error on login page, need sarah to check db logs by 5pm today"</p>
+            {/* Help & Support */}
+            <div className="bg-gray-800/50 p-8 rounded-xl">
+              <h3 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h3>
+              <div className="space-y-6">
+                <div>
+                   <h4 className="text-white font-bold mb-2">How accurate is the AI refinement?</h4>
+                   <p className="text-sm text-gray-400">NoteRefiner uses advanced Generative AI models (Gemini 2.5 Flash / Gemma 3) which are specifically tuned for code and technical language. While it is highly accurate, we always recommend reviewing the output—especially for critical IP addresses or financial data—before publishing.</p>
                 </div>
-                <div className="border border-blue-900/50 p-4 rounded bg-blue-900/10">
-                  <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">After (Refined Output)</span>
-                  <div className="mt-2 text-sm text-gray-200">
-                    <p><strong>Issue:</strong> API 500 Error detected on Login Page.</p>
-                    <p className="mt-1"><strong>Action Item:</strong> Sarah to investigate database logs.</p>
-                    <p className="mt-1"><strong>Deadline:</strong> Today at 5:00 PM.</p>
-                  </div>
+                <div>
+                   <h4 className="text-white font-bold mb-2">Does this work for coding languages?</h4>
+                   <p className="text-sm text-gray-400">Yes. If you paste a snippet of Python or SQL error logs into the "IT Ticket" or "KB Article" mode, the AI will recognize the code, format it into a Markdown code block, and separate it from the descriptive text.</p>
+                </div>
+                <div>
+                   <h4 className="text-white font-bold mb-2">Can I save my notes?</h4>
+                   <p className="text-sm text-gray-400">Yes. Clicking "Save to History" stores your refined notes in your browser's Local Storage. This means your data stays on your device and is not saved to our cloud database, ensuring your privacy.</p>
                 </div>
               </div>
-            </div>
-
-            {/* 4. HISTORY & TECH */}
-            <div className="bg-gray-800 p-8 rounded-xl">
-              <h3 className="text-2xl font-bold text-white mb-4">Did You Know?</h3>
-              <p className="mb-4 leading-relaxed">
-                <strong>The Cost of Bad Documentation:</strong> Studies show that IT professionals spend up to 20% of their work week looking for information or clarifying poorly written instructions. This "knowledge loss" costs companies thousands of dollars per employee every year.
-              </p>
-              <p className="leading-relaxed">
-                <strong>How It Works:</strong> NoteRefiner uses Large Language Models (LLMs) trained on millions of technical documents. Unlike a simple spell-checker, the AI understands the <em>context</em> of your notes—distinguishing between a server IP address and a phone number, or recognizing that "Urgent" means a high-priority ticket.
-              </p>
             </div>
 
           </article>
-          {/* --- END DICTIONARY SECTION --- */}
-
         </section>
       </main>
 
-      {/* FOOTER */}
+      {/* Footer */}
       <footer className="w-full bg-gray-950 text-center text-gray-500 text-sm py-8 border-t border-gray-800">
         <div className="flex justify-center gap-6 mb-4">
           <a href="/privacy" className="hover:text-white transition">Privacy Policy</a>
           <a href="/terms" className="hover:text-white transition">Terms of Service</a>
           <a href="/contact" className="hover:text-white transition">Contact Us</a>
         </div>
-        <p>&copy; {new Date().getFullYear()} NoteRefiner. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} NoteRefiner. All rights reserved. | <span className="text-gray-600">Built for Engineers, by Engineers.</span></p>
       </footer>
     </div>
   );
