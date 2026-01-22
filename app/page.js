@@ -216,40 +216,40 @@ export default function Home() {
                </div>
             </div>
 
-            {/* 3. VIDEO LEARNING CENTER */}
+            {/* 3. VIDEO LEARNING CENTER (UPDATED WITH WORKING VIDEOS) */}
             <div className="mb-20">
                <h3 className="text-2xl font-bold text-white mb-6">Video Learning Center</h3>
                <p className="mb-8 text-gray-400">Master the art of technical communication with these curated resources from industry leaders like Google and leading universities.</p>
                
                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Video 1: Google SRE */}
+                  {/* Video 1: Google Cloud Tech (Official) */}
                   <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
                      <div className="aspect-w-16 aspect-h-9 mb-4">
                         <iframe 
                            className="w-full h-64 rounded-lg"
-                           src="https://www.youtube.com/embed/ciUP1g_9dTA" 
-                           title="SRE at Google"
+                           src="https://www.youtube.com/embed/uTEL8LpG15I" 
+                           title="What is SRE?"
                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                            allowFullScreen
                         ></iframe>
                      </div>
-                     <h4 className="text-lg font-bold text-white mb-2">Google SRE: The Role of Documentation</h4>
-                     <p className="text-sm text-gray-400">Learn how Google Site Reliability Engineers use documentation to prevent system outages.</p>
+                     <h4 className="text-lg font-bold text-white mb-2">What is Site Reliability Engineering?</h4>
+                     <p className="text-sm text-gray-400">Google's official introduction to SRE principles and why documentation is critical for uptime.</p>
                   </div>
 
-                  {/* Video 2: Technical Writing */}
+                  {/* Video 2: Google Developers (Official) */}
                   <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
                      <div className="aspect-w-16 aspect-h-9 mb-4">
                         <iframe 
                            className="w-full h-64 rounded-lg"
-                           src="https://www.youtube.com/embed/N2zK3sAtr-4" 
-                           title="Technical Writing Course"
+                           src="https://www.youtube.com/embed/JgNi5tW9cTE" 
+                           title="Technical Writing for Developers"
                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                            allowFullScreen
                         ></iframe>
                      </div>
                      <h4 className="text-lg font-bold text-white mb-2">Technical Writing for Developers</h4>
-                     <p className="text-sm text-gray-400">A crash course in writing clear, concise, and professional engineering logs.</p>
+                     <p className="text-sm text-gray-400">A crash course from Google Developers on writing clear, concise engineering logs.</p>
                   </div>
                </div>
             </div>
@@ -320,7 +320,7 @@ export default function Home() {
                      </p>
                   </div>
 
-                  {/* Story 3 (NEW) */}
+                  {/* Story 3 */}
                   <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-red-500 transition">
                      <h4 className="text-xl font-bold text-white mb-2">3. The AWS S3 Outage (Typo Disaster)</h4>
                      <p className="text-sm text-gray-400 mb-4 italic">February 2017</p>
