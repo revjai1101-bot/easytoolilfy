@@ -160,56 +160,73 @@ export default function Home() {
             </button>
           </div>
 
-          {/* --- ADSENSE OPTIMIZED CONTENT GUIDE (300+ Words) --- */}
-          <article className="mt-20 border-t border-gray-800 pt-10 max-w-4xl mx-auto text-gray-300 leading-relaxed">
-            <h2 className="text-3xl font-bold text-white mb-6">How to Use NoteRefiner: A Complete Guide</h2>
+          {/* --- NEW "DICTIONARY STYLE" CONTENT SECTION --- */}
+          <article className="mt-24 border-t border-gray-800 pt-12 max-w-5xl mx-auto text-gray-300">
             
-            <p className="mb-6">
-              Welcome to <strong>NoteRefiner</strong>, the ultimate productivity tool designed for IT professionals, project managers, and corporate communicators. 
-              Writing professional documentation often takes more time than the actual work itself. Our tool solves this by using advanced AI to instantly transform your messy, 
-              shorthand "brain dumps" into polished, structured, and grammatically correct documents.
-            </p>
+            {/* 1. DEFINITION SECTION */}
+            <div className="mb-12">
+              <div className="flex items-baseline gap-4 mb-4">
+                <h2 className="text-4xl font-bold text-white">note refine</h2>
+                <span className="text-gray-500 italic text-xl">verb</span>
+              </div>
+              <p className="text-xl leading-relaxed text-gray-200 border-l-4 border-blue-500 pl-4">
+                The process of converting unstructured, shorthand, or messy text into professional, grammatically correct documentation using Artificial Intelligence.
+              </p>
+            </div>
 
-            <h3 className="text-xl font-bold text-white mb-3">Step-by-Step Instructions</h3>
-            <ol className="list-decimal pl-6 mb-8 space-y-2">
-              <li><strong>Select Your Mode:</strong> Use the dropdown menu at the top right to choose the format you need (e.g., IT Ticket, Email, Meeting Minutes).</li>
-              <li><strong>Input Rough Notes:</strong> In the left box, type or paste your raw notes. You don't need to worry about grammar, spelling, or formatting. Just get the facts down.</li>
-              <li><strong>Generate:</strong> Click the blue "Generate" button. In seconds, our AI will restructure your information.</li>
-              <li><strong>Review and Save:</strong> Read the polished output on the right. If you like it, click "Save to History" to store it in your browser for later reference.</li>
-            </ol>
-
-            <h3 className="text-xl font-bold text-white mb-3">Understanding the Modes</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-gray-800 p-4 rounded-lg">
-                <h4 className="text-blue-400 font-bold mb-2">IT Ticket Log</h4>
-                <p className="text-sm">Perfect for Helpdesk and SysAdmins. It organizes notes into Issue Summary, Observations, Troubleshooting Steps, and Resolution. Ideal for Jira, ServiceNow, or Zendesk.</p>
+            {/* 2. SYNONYMS & RELATED FORMATS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-bold text-white mb-3 border-b border-gray-600 pb-2">Synonyms (Use Cases)</h3>
+                <ul className="space-y-3 text-sm">
+                  <li><strong className="text-blue-400">Meeting Minutes:</strong> A structured written record of a meeting, including attendees, decisions made, and action items.</li>
+                  <li><strong className="text-blue-400">IT Ticket Logs:</strong> Technical documentation describing a system error, steps to reproduce, and resolution status (Jira/ServiceNow).</li>
+                  <li><strong className="text-blue-400">Executive Summaries:</strong> A short document that summarizes a longer report or proposal for management.</li>
+                </ul>
               </div>
-              <div className="bg-gray-800 p-4 rounded-lg">
-                <h4 className="text-blue-400 font-bold mb-2">Professional Email</h4>
-                <p className="text-sm">Converts casual thoughts into a polite, corporate-ready email. It automatically generates a subject line and ensures a professional tone suitable for clients or management.</p>
-              </div>
-              <div className="bg-gray-800 p-4 rounded-lg">
-                <h4 className="text-blue-400 font-bold mb-2">Meeting Minutes</h4>
-                <p className="text-sm">Ideal for Project Managers. Turns random meeting notes into a structured report containing Objectives, Key Discussion Points, and clear Action Items for the team.</p>
-              </div>
-              <div className="bg-gray-800 p-4 rounded-lg">
-                <h4 className="text-blue-400 font-bold mb-2">Knowledge Base (KB) Article</h4>
-                <p className="text-sm">Designed for documentation teams. It structures a solution into a formal Problem to Solution format, ready to be pasted into your internal wiki.</p>
+              
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-bold text-white mb-3 border-b border-gray-600 pb-2">Antonyms (What it fixes)</h3>
+                <ul className="space-y-3 text-sm">
+                  <li><strong className="text-red-400">Brain Dumps:</strong> Unfiltered, disorganized thoughts written down quickly without structure.</li>
+                  <li><strong className="text-red-400">Shorthand:</strong> Abbreviated writing that is often difficult for others to understand (e.g., "svr down pls fix").</li>
+                  <li><strong className="text-red-400">Drafts:</strong> Preliminary versions of documents that contain typos and grammatical errors.</li>
+                </ul>
               </div>
             </div>
 
-            <h3 className="text-xl font-bold text-white mb-3">Frequently Asked Questions</h3>
-            <div className="space-y-4">
-              <div>
-                <strong className="text-white block">Is my data secure?</strong>
-                <p>Yes. NoteRefiner processes text via API and sends it back immediately. We do not store your notes on our servers. Your "Saved History" is stored locally on your own device.</p>
-              </div>
-              <div>
-                <strong className="text-white block">Is this tool free?</strong>
-                <p>Yes, NoteRefiner is completely free to use. We aim to help professionals save time and improve communication standards across the industry.</p>
+            {/* 3. EXAMPLES IN CONTEXT */}
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-white mb-6">Examples of Note Refining</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="border border-gray-700 p-4 rounded bg-gray-900/50">
+                  <span className="text-xs font-bold text-red-400 uppercase tracking-wider">Before (Raw Input)</span>
+                  <p className="mt-2 font-mono text-sm text-gray-400">"bob said api 500 error on login page, need sarah to check db logs by 5pm today"</p>
+                </div>
+                <div className="border border-blue-900/50 p-4 rounded bg-blue-900/10">
+                  <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">After (Refined Output)</span>
+                  <div className="mt-2 text-sm text-gray-200">
+                    <p><strong>Issue:</strong> API 500 Error detected on Login Page.</p>
+                    <p className="mt-1"><strong>Action Item:</strong> Sarah to investigate database logs.</p>
+                    <p className="mt-1"><strong>Deadline:</strong> Today at 5:00 PM.</p>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* 4. HISTORY & TECH */}
+            <div className="bg-gray-800 p-8 rounded-xl">
+              <h3 className="text-2xl font-bold text-white mb-4">Did You Know?</h3>
+              <p className="mb-4 leading-relaxed">
+                <strong>The Cost of Bad Documentation:</strong> Studies show that IT professionals spend up to 20% of their work week looking for information or clarifying poorly written instructions. This "knowledge loss" costs companies thousands of dollars per employee every year.
+              </p>
+              <p className="leading-relaxed">
+                <strong>How It Works:</strong> NoteRefiner uses Large Language Models (LLMs) trained on millions of technical documents. Unlike a simple spell-checker, the AI understands the <em>context</em> of your notes—distinguishing between a server IP address and a phone number, or recognizing that "Urgent" means a high-priority ticket.
+              </p>
+            </div>
+
           </article>
+          {/* --- END DICTIONARY SECTION --- */}
 
         </section>
       </main>
