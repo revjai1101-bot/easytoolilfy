@@ -181,24 +181,6 @@ export default function Home() {
               <p className="text-lg leading-relaxed text-gray-200 border-l-4 border-blue-500 pl-6 mb-6">
                 The technical process of transforming unstructured data (logs, shorthand, brain dumps) into standardized, compliant documentation using Natural Language Processing (NLP). This aligns with ISO 9001 quality management standards for record-keeping and is a cornerstone of modern DevOps practices.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                 <div className="bg-gray-900 p-5 rounded-lg">
-                    <h4 className="text-blue-400 font-bold mb-3">Core Applications</h4>
-                    <ul className="list-disc list-inside text-sm space-y-2 text-gray-300">
-                        <li><strong>Incident Post-Mortems:</strong> Structuring root cause analysis for SRE teams.</li>
-                        <li><strong>Change Management:</strong> Documenting RFCs and system updates to prevent rollback failure.</li>
-                        <li><strong>Knowledge Transfer:</strong> Creating wiki entries for team on-boarding and shift handovers.</li>
-                    </ul>
-                 </div>
-                 <div className="bg-gray-900 p-5 rounded-lg">
-                    <h4 className="text-red-400 font-bold mb-3">Risk Mitigation</h4>
-                    <ul className="list-disc list-inside text-sm space-y-2 text-gray-300">
-                        <li><strong>Ambiguity Reduction:</strong> Eliminating vague terms like "system is slow" which delay resolution.</li>
-                        <li><strong>Standardization:</strong> Ensuring all shifts (APAC, EMEA, US) report issues identically.</li>
-                        <li><strong>Searchability:</strong> Creating indexable keywords for future retrieval in Knowledge Bases.</li>
-                    </ul>
-                 </div>
-              </div>
             </div>
 
             {/* 2. SYSTEM ARCHITECTURE (VISUAL DIAGRAM) */}
@@ -216,41 +198,97 @@ export default function Home() {
                </div>
             </div>
 
-            {/* 3. VIDEO LEARNING CENTER (UPDATED WITH WORKING VIDEOS) */}
+            {/* 3. CURATED VIDEO LIBRARY (NEW - TEXT LINKS ONLY) */}
             <div className="mb-20">
-               <h3 className="text-2xl font-bold text-white mb-6">Video Learning Center</h3>
-               <p className="mb-8 text-gray-400">Master the art of technical communication with these curated resources from industry leaders like Google and leading universities.</p>
+               <h3 className="text-2xl font-bold text-white mb-6">Curated Video Library</h3>
+               <p className="mb-8 text-gray-400">We have curated the most authoritative talks from Google, IBM, and TED regarding technical communication. These resources are essential for any Senior Engineer.</p>
                
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Video 1: Google Cloud Tech (Official) */}
-                  <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                     <div className="aspect-w-16 aspect-h-9 mb-4">
-                        <iframe 
-                           className="w-full h-64 rounded-lg"
-                           src="https://www.youtube.com/embed/uTEL8LpG15I" 
-                           title="What is SRE?"
-                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                           allowFullScreen
-                        ></iframe>
-                     </div>
-                     <h4 className="text-lg font-bold text-white mb-2">What is Site Reliability Engineering?</h4>
-                     <p className="text-sm text-gray-400">Google's official introduction to SRE principles and why documentation is critical for uptime.</p>
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  
+                  {/* SRE CATEGORY */}
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-blue-500 transition group">
+                      <div className="text-blue-500 text-xs font-bold uppercase mb-2">Google Cloud Tech</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">What is SRE?</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Google's official breakdown of Site Reliability Engineering and why logging matters.</p>
+                      <a href="https://www.youtube.com/watch?v=uTEL8LpG15I" target="_blank" rel="noopener noreferrer" className="text-blue-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
                   </div>
 
-                  {/* Video 2: Google Developers (Official) */}
-                  <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                     <div className="aspect-w-16 aspect-h-9 mb-4">
-                        <iframe 
-                           className="w-full h-64 rounded-lg"
-                           src="https://www.youtube.com/embed/JgNi5tW9cTE" 
-                           title="Technical Writing for Developers"
-                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                           allowFullScreen
-                        ></iframe>
-                     </div>
-                     <h4 className="text-lg font-bold text-white mb-2">Technical Writing for Developers</h4>
-                     <p className="text-sm text-gray-400">A crash course from Google Developers on writing clear, concise engineering logs.</p>
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-blue-500 transition group">
+                      <div className="text-blue-500 text-xs font-bold uppercase mb-2">Google Cloud Tech</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">SLIs, SLOs, SLAs, oh my!</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Understanding the metrics that define system uptime and reliability reports.</p>
+                      <a href="https://www.youtube.com/watch?v=tEylfyLFVgE" target="_blank" rel="noopener noreferrer" className="text-blue-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
                   </div>
+
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-blue-500 transition group">
+                      <div className="text-blue-500 text-xs font-bold uppercase mb-2">IBM Technology</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">What is ITIL 4?</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">A guide to the Information Technology Infrastructure Library framework.</p>
+                      <a href="https://www.youtube.com/watch?v=hU4k801iWjI" target="_blank" rel="noopener noreferrer" className="text-blue-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
+                  {/* WRITING CATEGORY */}
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-green-500 transition group">
+                      <div className="text-green-500 text-xs font-bold uppercase mb-2">Google Developers</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">Tech Writing for Devs</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">The official course on how to write clear, concise engineering documentation.</p>
+                      <a href="https://www.youtube.com/watch?v=JgNi5tW9cTE" target="_blank" rel="noopener noreferrer" className="text-green-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-green-500 transition group">
+                      <div className="text-green-500 text-xs font-bold uppercase mb-2">Traversy Media</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">Markdown Crash Course</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Learn the syntax used by GitHub and NoteRefiner for formatting code blocks.</p>
+                      <a href="https://www.youtube.com/watch?v=HUBNt18RFbo" target="_blank" rel="noopener noreferrer" className="text-green-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-green-500 transition group">
+                      <div className="text-green-500 text-xs font-bold uppercase mb-2">Computerphile</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">SQL Injection</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Why validating and documenting database inputs is critical for security.</p>
+                      <a href="https://www.youtube.com/watch?v=_jKylhJtPmI" target="_blank" rel="noopener noreferrer" className="text-green-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
+                  {/* SOFT SKILLS CATEGORY */}
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-purple-500 transition group">
+                      <div className="text-purple-500 text-xs font-bold uppercase mb-2">TED Talks</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">10 Ways to Have a Better Conversation</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Communication skills are the #1 predictor of engineering career growth.</p>
+                      <a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener noreferrer" className="text-purple-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-purple-500 transition group">
+                      <div className="text-purple-500 text-xs font-bold uppercase mb-2">Simon Sinek</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">Start with Why</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Understanding the "Why" behind a technical incident is key to Root Cause Analysis.</p>
+                      <a href="https://www.youtube.com/watch?v=u4ZoJKF_VuA" target="_blank" rel="noopener noreferrer" className="text-purple-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
+                  <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-purple-500 transition group">
+                      <div className="text-purple-500 text-xs font-bold uppercase mb-2">Harvard Business Review</div>
+                      <h4 className="text-lg font-bold text-white mb-2 group-hover:underline">Psychological Safety</h4>
+                      <p className="text-sm text-gray-400 mb-4 flex-1">Why "Blameless Post-Mortems" are essential for a healthy engineering culture.</p>
+                      <a href="https://www.youtube.com/watch?v=Lnhz98mpUE0" target="_blank" rel="noopener noreferrer" className="text-purple-400 text-sm font-bold flex items-center">
+                          Watch on YouTube <span className="ml-2">↗</span>
+                      </a>
+                  </div>
+
                </div>
             </div>
 
